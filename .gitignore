@@ -1,0 +1,42 @@
+# Entornos virtuales Python
+venv/
+.venv/
+env/
+
+# Caché Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Secretos y configuración local
+.env
+.env.*
+*.env
+
+# Configuración MCP local (credenciales de herramientas)
+.mcp.json
+
+# Dependencias Node.js
+node_modules/
+
+# Build Next.js
+web/.next/
+web/out/
+
+# Artefactos de datos (DVC gestiona esto)
+*.csv
+*.parquet
+*.pkl
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/settings.json
+.idea/
+
+# Archivos temporales / contexto de sesión (no pertenecen al repo)
+contexto.md
+temp.md

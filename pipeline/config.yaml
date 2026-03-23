@@ -1,0 +1,59 @@
+# config.yaml — Dashboard MultiTodo
+# Configuración global del pipeline. Los secretos van en .env (nunca aquí).
+
+project:
+  name: "Dashboard MultiTodo"
+  client: "Almacen MultiTodo"
+  developer: "Sabbia Solutions & Services (Triple S)"
+  timezone: "America/Bogota"         # UTC-5. Usar pytz — nunca offsets manuales.
+  data_lag_days: 1                   # T-1: siempre datos del día anterior completo.
+
+supabase:
+  url: "${SUPABASE_URL}"             # Definir en .env
+  key: "${SUPABASE_KEY}"             # Definir en .env — anon key para lectura
+  service_role_key: "${SUPABASE_SERVICE_ROLE_KEY}"  # Definir en .env — solo pipeline
+
+tables:
+  # Tablas del cliente (solo lectura para Triple S)
+  ventas: "usr_ventas"
+  inventario: "usr_inventario"
+  productos: "usr_productos"
+  sedes: "usr_sedes"
+  # Tablas de Triple S
+  bronze_ventas: "tss_bronze_ventas"
+  bronze_inventario: "tss_bronze_inventario"
+  silver_ventas: "tss_silver_ventas"
+  silver_inventario: "tss_silver_inventario"
+  gold_metricas: "tss_gold_metricas"
+  gold_clasificacion_abc: "tss_gold_clasificacion_abc"
+  error_log: "tss_error_log"
+  pipeline_log: "tss_pipeline_log"
+  quarantine: "tss_quarantine"
+  alerts: "tss_alerts"
+
+pipeline:
+  modes:
+    - validate
+    - etl
+    - alerts
+  operational_window_utc:
+    start: "13:00"                   # 08:00 COT
+    end: "23:00"                     # 18:00 COT
+
+alerts:
+  abc_recalc_day: "monday"           # Clasificación ABC recalculada cada lunes
+  abc_window_days: 90                # Ventana de análisis ABC: últimos 90 días
+  default_window_days: 7             # Ventana de análisis de alertas: últimos 7 días
+  thresholds:
+    stock_critico_dias: 3            # ALT_NEG_001: stock < 3 días de venta
+    stock_saludable_dias: 7          # ALT_POS_003: stock > 7 días de venta
+    rotacion_lenta_pct: 0.30         # ALT_NEG_002: ventas < 30% del promedio categoría
+    caida_ventas_pct: 0.50           # ALT_NEG_003: ventas < 50% del histórico día semana
+    alta_rotacion_pct: 1.50          # ALT_POS_001: ventas > 150% del promedio histórico SKU
+    crecimiento_categoria_pct: 0.20  # ALT_POS_002: crecimiento > 20% vs mes anterior
+    margen_minimo_pct: 0.15          # ALT_NEG_006: margen < 15% en Clase A
+    margen_estrella_pct: 0.35        # ALT_POS_004/006: margen > 35%
+    sede_alto_rendimiento_pct: 0.15  # ALT_POS_005: margen sede > promedio + 15%
+    obsoleto_dias_sin_venta: 30      # ALT_NEG_005: sin ventas en 30+ días
+    abc_clase_a_percentil: 0.20      # Top 20% SKUs por valor acumulado
+    abc_clase_b_percentil: 0.50      # Siguientes 30% (20% a 50%)
