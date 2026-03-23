@@ -1,51 +1,48 @@
-# PROJECT_handoff — Dashboard MultiTodo
+# PROJECT_handoff — Bitácora de Cambio de Sesión
 
-> **MANDATO IA:** Lee este archivo en el Paso 3 del Protocolo de Inicio de Sesión. Retoma el estado táctico exacto: archivos activos, bloqueador pendiente y próxima acción. Este archivo se reescribe completamente al cierre de cada sesión con el skill `/session-close`.
-
----
-
-## 🕐 Punto de Guardado
-
-- **Fecha:** 2026-03-23
-- **Sesión:** Inicio — Bloque 3 en curso
-- **Etapa activa:** 1.1 — Constitución del Proyecto
+> **MANDATO IA:** Este es el estado mental exacto donde se pausó el trabajo. Léelo en el Paso 3 del Protocolo de Inicio de Sesión para retomar la acción táctica de inmediato.
 
 ---
 
-## 🗂️ Archivos en el Escritorio (Working Set)
+## Punto de Guardado
 
-| Archivo | Acción | Estado |
-|---|---|---|
-| `.gitignore` | Creado | ✅ Completo |
-| `docs/plans/.gitkeep` | Creado | ✅ Completo |
-| `docs/executives/.gitkeep` | Creado | ✅ Completo |
-| `docs/lessons/.gitkeep` | Creado | ✅ Completo (temporal) |
-| `docs/changes/.gitkeep` | Creado | ✅ Completo |
-| `docs/database/.gitkeep` | Creado | ✅ Completo |
-| `pipeline/pipelines/.gitkeep` | Creado | ✅ Completo |
-| `pipeline/src/.gitkeep` | Creado | ✅ Completo |
-| `pipeline/tests/.gitkeep` | Creado | ✅ Completo |
-| `web/.gitkeep` | Creado | ✅ Completo |
-| `PROJECT_handoff.md` | Creado | 🔄 Este archivo |
+- **Última actualización:** 2026-03-23 — Cierre de sesión (Etapa 1.1 completada)
+- **Fase / Etapa:** `Fase 1 — Etapa 1.2` (activa, pendiente de iniciar)
 
 ---
 
-## 🧠 Contexto Inmediato
+## Archivos en el Escritorio (Working Set)
 
-- Bloque 1 (Git) completado: repositorio inicializado, `.gitignore` funcional, remoto conectado a `https://github.com/jdrodriguez1000/Almacen_MultiTodo.git`.
-- Bloque 2 (Carpetas) completado: 8 subdirectorios en `docs/`, estructura `pipeline/` y `web/` creados.
-- Bloque 3 (Gobernanza) en curso: `CLAUDE.md` ✅, `PROJECT_index.md` ✅, skills ✅. Pendiente: `PROJECT_handoff.md` (este archivo) y `lessons-learned.md`.
+- `.gitignore` — Creado con exclusiones mínimas del spec §2.1. Incluye `contexto.md` y `temp.md` por decisión del usuario.
+- `PROJECT_index.md` — Actualizado: coordenadas apuntan a Etapa 1.2. Etapa 1.1 marcada ✅.
+- `PROJECT_handoff.md` — Este archivo (reescrito al cierre).
+- `docs/tasks/f01_01_task.md` — Todas las tareas TSK-1-01 a TSK-1-33 marcadas `[x]`.
+- `docs/executives/f01_01_executive.md` — Creado. Gate de avance a Etapa 1.2 desbloqueado.
+- `docs/lessons/lessons-learned.md` — Creado con estructura base + lecciones de esta sesión.
+- `pipeline/main.py` — Stub con argparse. Modos válidos: `validate`, `etl`, `alerts`.
+- `pipeline/config.yaml` — Estructura base con claves placeholder. Sin credenciales.
 
 ---
 
-## 🚧 Bloqueador / Último Error
+## Contexto Inmediato
 
-- Ninguno.
+La Etapa 1.1 (Constitución del Proyecto) fue completada en su totalidad durante esta sesión. Se ejecutaron los 5 bloques: Git, carpetas, gobernanza, pipeline base y verificación final. El primer commit (`790e39a`) se realizó en rama `main` con 24 archivos. El Resumen Ejecutivo fue generado y el `PROJECT_index.md` actualizado. La Etapa 1.2 puede iniciarse sin restricciones — el único prerequisito era el ejecutivo de 1.1, que ya existe.
 
 ---
 
-## ▶️ Próxima Acción Inmediata
+## Bloqueador / Último Error
 
-Completar Bloque 3:
-1. `[TSK-1-21]` Crear `docs/lessons/lessons-learned.md` con estructura base del spec §2.4.
-2. Continuar con Bloque 4 (Pipeline Base): `config.yaml` y `main.py` stub.
+Ninguno — la sesión cerró en estado limpio.
+
+> Nota menor registrada: advertencias de LF→CRLF en el commit (comportamiento normal de Git en Windows). No es un bloqueador — solo cosmético.
+
+---
+
+## Próxima Acción Inmediata
+
+1. Invocar `/sdd-doc` para crear los 4 documentos SDD de la Etapa 1.2:
+   - `docs/reqs/f01_02_prd.md` — PRD: qué verificar y por qué
+   - `docs/specs/f01_02_spec.md` — SPEC: cómo verificar (contratos técnicos con Supabase)
+   - `docs/plans/f01_02_plan.md` — Plan de implementación de la etapa
+   - `docs/tasks/f01_02_task.md` — Lista atómica de tareas ejecutables
+2. Una vez aprobados los SDD, ejecutar las tareas de Etapa 1.2 (verificación de tablas Supabase, triggers, índices, permisos y conectividad).

@@ -8,7 +8,35 @@
 ## Fase 1 — Gobernanza y Cimientos
 
 ### Etapa 1.1 — Constitución del Proyecto
-*(Sección creada. Se poblará con lecciones al cerrar la etapa.)*
+
+#### Sesión: 2026-03-23
+
+**✅ Lo que funcionó bien:**
+- El flujo de bloques (B1→B2→B3→B4→B5) resultó natural y sin fricciones — cada bloque tenía dependencias claras del anterior.
+- Las verificaciones intermedias (git status, ls, python main.py) dieron confianza inmediata en cada paso sin overhead.
+- Separar `contexto.md` y `temp.md` del repositorio via `.gitignore` antes del primer commit evitó ruido en el historial.
+- El spec §2.1 tenía el `.gitignore` exacto listo para copiar — cero decisiones ad-hoc.
+
+**⚠️ Lo que no funcionó / fricción encontrada:**
+- El repositorio no estaba inicializado con Git al comenzar la sesión — TSK-1-01 pasó de verificación a inicialización. El task file asumía que ya existía.
+- La rama se llamó `master` por defecto (comportamiento de Git en Windows sin configuración global). Se renombró a `main` antes del commit — sin consecuencias pero requirió un paso no documentado.
+- Advertencias de LF→CRLF en el commit en Windows. Cosmético, pero puede confundir en futuras sesiones si no se documenta.
+
+**💡 Decisiones clave tomadas:**
+- `contexto.md` y `temp.md` excluidos del repositorio por decisión explícita del usuario — no pertenecen al proyecto.
+- Git inicializado y configurado en la misma sesión en lugar de asumir existencia previa.
+- Rama renombrada de `master` a `main` antes del primer commit para cumplir el workflow del CLAUDE.md §6.
+
+---
+
+### 📋 Resumen de la Etapa 1.1
+
+**Lecciones más valiosas:**
+1. **Verificar prerequisitos antes de tareas de verificación:** TSK-1-01 era "verificar que Git está inicializado" pero en realidad fue "inicializar Git". Los task files deben asumir el estado mínimo real del entorno, no el estado ideal.
+2. **Configurar `core.autocrlf` en Windows:** Para evitar ruido de LF→CRLF en cada commit en entornos Windows, considerar agregar `.gitattributes` con `* text=auto` en la Etapa 1.2 o un CC.
+3. **El spec como fuente de copy-paste:** Tener el contenido exacto de archivos (`.gitignore`, `config.yaml`, `main.py`) en el spec §2.x eliminó toda decisión de implementación — el agente copió, no inventó. Este patrón debe mantenerse en todas las etapas.
+
+---
 
 ### Etapa 1.2 — Validación de Infraestructura
 *(Pendiente de inicio.)*

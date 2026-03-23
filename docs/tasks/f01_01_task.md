@@ -76,14 +76,14 @@
 
 > Depende de: B3 + B4 (todos los artefactos creados).
 
-- [ ] `[TSK-1-26]` Ejecutar `ls docs/` y confirmar los 8 subdirectorios: `reqs/`, `specs/`, `plans/`, `tasks/`, `executives/`, `lessons/`, `changes/`, `database/`.
-- [ ] `[TSK-1-27]` Ejecutar `ls pipeline/` y confirmar: `main.py`, `config.yaml`, `pipelines/`, `src/`, `tests/`.
-- [ ] `[TSK-1-28]` Ejecutar `ls` en la raíz y confirmar artefactos de gobernanza: `CLAUDE.md`, `PROJECT_index.md`, `PROJECT_handoff.md`, `.gitignore`.
-- [ ] `[TSK-1-29]` Revisar `pipeline/config.yaml` visualmente: confirmar que no contiene URLs reales de Supabase ni API keys. Solo variables de entorno con formato `"${VAR}"` (`[MET-06]`).
-- [ ] `[TSK-1-30]` Ejecutar `git status` y revisar los archivos untracked para confirmar que ningún archivo sensible (`.env`, credenciales) está expuesto antes del commit.
-- [ ] `[TSK-1-31]` Crear el primer commit atómico en rama `main` con el mensaje exacto: `docs: constitución inicial del proyecto — etapa 1.1`. Stagear todos los artefactos de gobernanza producidos en esta etapa.
-- [ ] `[TSK-1-32]` Ejecutar `git log --oneline` y confirmar que el historial muestra el commit creado en `[TSK-1-31]`.
-- [ ] `[TSK-1-33]` Ejecutar `git status` después del commit y confirmar: "nothing to commit, working tree clean" (`[MET-05]`).
+- [x] `[TSK-1-26]` Ejecutar `ls docs/` y confirmar los 8 subdirectorios: `reqs/`, `specs/`, `plans/`, `tasks/`, `executives/`, `lessons/`, `changes/`, `database/`.
+- [x] `[TSK-1-27]` Ejecutar `ls pipeline/` y confirmar: `main.py`, `config.yaml`, `pipelines/`, `src/`, `tests/`.
+- [x] `[TSK-1-28]` Ejecutar `ls` en la raíz y confirmar artefactos de gobernanza: `CLAUDE.md`, `PROJECT_index.md`, `PROJECT_handoff.md`, `.gitignore`.
+- [x] `[TSK-1-29]` Revisar `pipeline/config.yaml` visualmente: confirmar que no contiene URLs reales de Supabase ni API keys. Solo variables de entorno con formato `"${VAR}"` (`[MET-06]`).
+- [x] `[TSK-1-30]` Ejecutar `git status` y revisar los archivos untracked para confirmar que ningún archivo sensible (`.env`, credenciales) está expuesto antes del commit.
+- [x] `[TSK-1-31]` Crear el primer commit atómico en rama `main` con el mensaje exacto: `docs: constitución inicial del proyecto — etapa 1.1`. Stagear todos los artefactos de gobernanza producidos en esta etapa.
+- [x] `[TSK-1-32]` Ejecutar `git log --oneline` y confirmar que el historial muestra el commit creado en `[TSK-1-31]`.
+- [x] `[TSK-1-33]` Ejecutar `git status` después del commit y confirmar: "nothing to commit, working tree clean" (`[MET-05]`).
 
 ---
 
@@ -91,6 +91,6 @@
 
 > Prerrequisito: todos los bloques B1–B5 completados (32 tareas `[x]`).
 
-- [ ] `[TSK-1-34]` Invocar `/update-index` para actualizar `PROJECT_index.md` con los hitos de la Etapa 1.1 marcados como completados y las coordenadas actuales apuntando a Etapa 1.2.
-- [ ] `[TSK-1-35]` Invocar `/close-stage` para generar el Resumen Ejecutivo `docs/executives/f01_01_executive.md`. **Este documento es el gate obligatorio para avanzar a Etapa 1.2.**
-- [ ] `[TSK-1-36]` Invocar `/session-close` para reescribir `PROJECT_handoff.md` con el estado táctico exacto al cierre: etapa 1.1 completada, próxima acción es iniciar Etapa 1.2 (Validación de Infraestructura).
+- [x] `[TSK-1-34]` Invocar `/update-index` para actualizar `PROJECT_index.md` con los hitos de la Etapa 1.1 marcados como completados y las coordenadas actuales apuntando a Etapa 1.2.
+- [x] `[TSK-1-35]` Invocar `/close-stage` para generar el Resumen Ejecutivo `docs/executives/f01_01_executive.md`. **Este documento es el gate obligatorio para avanzar a Etapa 1.2.**
+- [x] `[TSK-1-36]` Invocar `/session-close` para reescribir `PROJECT_handoff.md` con el estado táctico exacto al cierre: etapa 1.1 completada, próxima acción es iniciar Etapa 1.2 (Validación de Infraestructura).
