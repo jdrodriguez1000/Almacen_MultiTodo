@@ -24,6 +24,8 @@ También organizamos el repositorio de código — el espacio digital donde vive
 | 3 | Estructura de carpetas canónica creada (documentación, motor de datos, dashboard) | El equipo sabe exactamente dónde buscar y dónde poner cada archivo desde el día uno |
 | 4 | 5 herramientas de automatización del agente IA instaladas y operativas | El agente puede abrir y cerrar sesiones, documentar avances y controlar cambios de forma autónoma |
 | 5 | Primer punto de guardado oficial: 24 archivos commiteados, sin credenciales expuestas | El proyecto tiene una línea base limpia y segura desde la cual avanzar |
+| 6 | Repositorio publicado en GitHub y visible en `jdrodriguez1000/Almacen_MultiTodo` | El trabajo está respaldado en la nube y disponible para todo el equipo Triple S desde el primer día |
+| 7 | Archivo de credenciales (`.env`) creado localmente con estructura lista para completar | El equipo sabe exactamente dónde ingresar las claves de Supabase sin riesgo de exposición accidental |
 
 ---
 
@@ -81,4 +83,4 @@ Esta verificación es crítica porque si la base de datos no está bien configur
 
 ---
 
-*Documento generado con `/close-stage` — Para detalles técnicos, consultar `docs/specs/f01_01_spec.md`*
+*Documento generado con `/close-stage` y actualizado al cierre formal de la etapa — Para detalles técnicos, consultar `docs/specs/f01_01_spec.md`*

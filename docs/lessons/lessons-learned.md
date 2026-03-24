@@ -38,6 +38,23 @@
 
 ---
 
+#### Sesión: 2026-03-23 (continuación)
+
+**✅ Lo que funcionó bien:**
+- Verificación estructural paralela (docs/, pipeline/, raíz) en un solo comando `ls` — eficiente y sin fricciones.
+- El `.gitignore` protegió correctamente `temp.md`, `contexto.md` y `.env` — ningún archivo sensible llegó al remote.
+- Primer push a GitHub sin conflictos: rama `main` configurada como upstream desde el inicio.
+
+**⚠️ Lo que no funcionó / fricción encontrada:**
+- El Protocolo de Inicio de Sesión fue omitido por instrucción del usuario — no es un problema técnico pero es una desviación del CLAUDE.md §1 que debe normalizarse en futuras sesiones.
+
+**💡 Decisiones clave tomadas:**
+- `.env` creado con placeholders vacíos como punto de entrada documentado — el usuario llena las credenciales reales sin riesgo de exposición.
+- `temp.md` eliminado del working directory al confirmar que no era un archivo del proyecto.
+- Push a `main` realizado directamente (rama de gobernanza): correcto para Etapa 1.1 que es pura documentación; en Etapa 1.2 el código irá a `feat/*`.
+
+---
+
 ### Etapa 1.2 — Validación de Infraestructura
 *(Pendiente de inicio.)*
 

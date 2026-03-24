@@ -6,19 +6,20 @@
 
 ## Punto de Guardado
 
-- **Última actualización:** 2026-03-23 — Cierre de sesión (Etapa 1.1 completada)
+- **Última actualización:** 2026-03-23 — Cierre de sesión (Etapa 1.1 cerrada formalmente)
 - **Fase / Etapa:** `Fase 1 — Etapa 1.2` (activa, pendiente de iniciar)
 
 ---
 
 ## Archivos en el Escritorio (Working Set)
 
-- `.gitignore` — Creado con exclusiones mínimas del spec §2.1. Incluye `contexto.md` y `temp.md` por decisión del usuario.
-- `PROJECT_index.md` — Actualizado: coordenadas apuntan a Etapa 1.2. Etapa 1.1 marcada ✅.
-- `PROJECT_handoff.md` — Este archivo (reescrito al cierre).
-- `docs/tasks/f01_01_task.md` — Todas las tareas TSK-1-01 a TSK-1-33 marcadas `[x]`.
-- `docs/executives/f01_01_executive.md` — Creado. Gate de avance a Etapa 1.2 desbloqueado.
-- `docs/lessons/lessons-learned.md` — Creado con estructura base + lecciones de esta sesión.
+- `.gitignore` — Operativo. `contexto.md` y `temp.md` excluidos correctamente.
+- `PROJECT_index.md` — Coordenadas apuntan a Etapa 1.2. Etapa 1.1 marcada ✅.
+- `PROJECT_handoff.md` — Este archivo (reescrito al cierre de esta sesión).
+- `docs/tasks/f01_01_task.md` — Bloques 1–5 completados y verificados en esta sesión.
+- `docs/executives/f01_01_executive.md` — Generado y commiteado. Gate de avance desbloqueado.
+- `docs/lessons/lessons-learned.md` — Actualizado con lecciones de Etapa 1.1.
+- `.env` — Creado localmente con placeholders. Correctamente ignorado por git.
 - `pipeline/main.py` — Stub con argparse. Modos válidos: `validate`, `etl`, `alerts`.
 - `pipeline/config.yaml` — Estructura base con claves placeholder. Sin credenciales.
 
@@ -26,7 +27,7 @@
 
 ## Contexto Inmediato
 
-La Etapa 1.1 (Constitución del Proyecto) fue completada en su totalidad durante esta sesión. Se ejecutaron los 5 bloques: Git, carpetas, gobernanza, pipeline base y verificación final. El primer commit (`790e39a`) se realizó en rama `main` con 24 archivos. El Resumen Ejecutivo fue generado y el `PROJECT_index.md` actualizado. La Etapa 1.2 puede iniciarse sin restricciones — el único prerequisito era el ejecutivo de 1.1, que ya existe.
+En esta sesión se verificaron los Bloques 3, 4 y 5 del task file de Etapa 1.1: CLAUDE.md (11 secciones ✅), PROJECT_index.md (5 secciones ✅), 5 skills ✅, estructura docs/ (8 subdirectorios ✅), pipeline/ y web/ ✅, config.yaml sin credenciales ✅. Se eliminó `temp.md`, se creó `.env` con placeholders y se realizó el primer push a GitHub (`jdrodriguez1000/Almacen_MultiTodo`, rama `main`). El Resumen Ejecutivo `f01_01_executive.md` existe y está commiteado. La Etapa 1.2 puede iniciarse sin restricciones.
 
 ---
 
