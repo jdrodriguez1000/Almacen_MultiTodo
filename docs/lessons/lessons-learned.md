@@ -56,7 +56,25 @@
 ---
 
 ### Etapa 1.2 — Validación de Infraestructura
-*(Pendiente de inicio.)*
+
+#### Sesión: 2026-03-24
+
+**✅ Lo que funcionó bien:**
+- El flujo A→B→C→D del skill `/sdd-doc` fue completamente fluido — cada documento dependió del anterior sin retrocesos.
+- Construir el PRD en una sesión separada (el usuario pidió "solo el PRD primero") antes de la SPEC, el Plan y las Tasks fue una buena práctica — permitió revisar el alcance antes de comprometerse con decisiones técnicas.
+- La SPEC incluyó DDL completo de las tablas `tss_*` directamente en el documento, eliminando decisiones ad-hoc en el momento de implementar.
+- El Plan incluyó protocolos de bloqueador explícitos para `[RSK-01]` y `[RSK-03]` — si ocurren, el agente sabe exactamente qué hacer sin improvisar.
+- Separar commits de código (`feat/etapa-1-2`) y documentos SDD (`main`) quedó documentado tanto en el Plan como en las Tasks — cero ambigüedad en el momento de commitear.
+
+**⚠️ Lo que no funcionó / fricción encontrada:**
+- Ninguna fricción técnica en esta sesión. Solo documentación — sin ejecución de código ni conexión a Supabase.
+- El usuario tuvo que solicitar explícitamente "solo el PRD" antes de que se procediera con ese documento solo — en futuras sesiones de SDD, preguntar si se quiere uno a uno o todos de golpe.
+
+**💡 Decisiones clave tomadas:**
+- `supabase_client.py` diseñado como módulo funcional (no clase) — sin estado compartido entre funciones.
+- Las tablas `tss_error_log`, `tss_pipeline_log` y `tss_quarantine` se crean en Etapa 1.2 (infraestructura base), no en Fase 2 — decisión de arquitectura con impacto en todas las etapas siguientes.
+- `create_tss_tables()` diseñada como idempotente (`CREATE TABLE IF NOT EXISTS`) — el script de infraestructura puede re-ejecutarse sin consecuencias.
+- TDD estricto en B2: los 12 tests se escriben todos juntos primero (fase RED), luego implementación función por función (fase GREEN) — mandato documentado en las tareas.
 
 ### Etapa 1.3 — Data Contract
 *(Pendiente de inicio.)*

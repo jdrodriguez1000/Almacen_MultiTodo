@@ -6,44 +6,42 @@
 
 ## Punto de Guardado
 
-- **Última actualización:** 2026-03-23 — Cierre de sesión (Etapa 1.1 cerrada formalmente)
-- **Fase / Etapa:** `Fase 1 — Etapa 1.2` (activa, pendiente de iniciar)
+- **Última actualización:** 2026-03-24 — Cierre de sesión (SDD Etapa 1.2 completado)
+- **Fase / Etapa:** `Fase 1 — Etapa 1.2` (SDD aprobado, implementación pendiente de iniciar)
 
 ---
 
 ## Archivos en el Escritorio (Working Set)
 
-- `.gitignore` — Operativo. `contexto.md` y `temp.md` excluidos correctamente.
-- `PROJECT_index.md` — Coordenadas apuntan a Etapa 1.2. Etapa 1.1 marcada ✅.
+- `docs/reqs/f01_02_prd.md` — Creado esta sesión. 4 objetivos, 8 REQs, 5 METs, 3 RSKs. ✅ Aprobado.
+- `docs/specs/f01_02_spec.md` — Creado esta sesión. 5 componentes ARC, DDL de 3 tablas `tss_*`, 7 funciones de `supabase_client.py`, 12 tests especificados. ✅ Aprobado.
+- `docs/plans/f01_02_plan.md` — Creado esta sesión. 5 bloques, ruta crítica definida, protocolos de bloqueador RSK-01 y RSK-03, DoD con 12 ítems. ✅ Aprobado.
+- `docs/tasks/f01_02_task.md` — Creado esta sesión. 43 tareas atómicas (TSK-1-01 a TSK-1-43), todas `[ ]` pendientes. ✅ Listo para ejecutar.
 - `PROJECT_handoff.md` — Este archivo (reescrito al cierre de esta sesión).
-- `docs/tasks/f01_01_task.md` — Bloques 1–5 completados y verificados en esta sesión.
-- `docs/executives/f01_01_executive.md` — Generado y commiteado. Gate de avance desbloqueado.
-- `docs/lessons/lessons-learned.md` — Actualizado con lecciones de Etapa 1.1.
-- `.env` — Creado localmente con placeholders. Correctamente ignorado por git.
-- `pipeline/main.py` — Stub con argparse. Modos válidos: `validate`, `etl`, `alerts`.
-- `pipeline/config.yaml` — Estructura base con claves placeholder. Sin credenciales.
 
 ---
 
 ## Contexto Inmediato
 
-En esta sesión se verificaron los Bloques 3, 4 y 5 del task file de Etapa 1.1: CLAUDE.md (11 secciones ✅), PROJECT_index.md (5 secciones ✅), 5 skills ✅, estructura docs/ (8 subdirectorios ✅), pipeline/ y web/ ✅, config.yaml sin credenciales ✅. Se eliminó `temp.md`, se creó `.env` con placeholders y se realizó el primer push a GitHub (`jdrodriguez1000/Almacen_MultiTodo`, rama `main`). El Resumen Ejecutivo `f01_01_executive.md` existe y está commiteado. La Etapa 1.2 puede iniciarse sin restricciones.
+En esta sesión se construyó el SDD completo de la Etapa 1.2 (Validación de Infraestructura). Los 4 documentos están aprobados y definen con precisión qué construir (`f01_02_prd.md`), cómo construirlo (`f01_02_spec.md`), en qué orden (`f01_02_plan.md`) y con qué tareas atómicas (`f01_02_task.md`). La implementación no ha comenzado — no se ha tocado ningún archivo de código. Los SDD pendientes de commitear a `main` también fueron subidos a GitHub en esta sesión.
+
+**Decisiones de diseño clave registradas en la SPEC:**
+- `supabase_client.py`: módulo funcional (no clase), 7 funciones atómicas.
+- Tablas `tss_error_log`, `tss_pipeline_log`, `tss_quarantine` se crean en esta etapa (infraestructura base, no Fase 2).
+- `create_tss_tables()` es idempotente (`CREATE TABLE IF NOT EXISTS`).
+- 12 tests de integración contra Supabase real — sin mocks de BD (mandato CLAUDE.md §5).
+- Código Python va a rama `feat/etapa-1-2`; documentos SDD van a `main`.
 
 ---
 
 ## Bloqueador / Último Error
 
-Ninguno — la sesión cerró en estado limpio.
-
-> Nota menor registrada: advertencias de LF→CRLF en el commit (comportamiento normal de Git en Windows). No es un bloqueador — solo cosmético.
+Ninguno — la sesión cerró en estado limpio. Los 4 documentos SDD fueron generados sin inconsistencias ni discrepancias de trazabilidad.
 
 ---
 
 ## Próxima Acción Inmediata
 
-1. Invocar `/sdd-doc` para crear los 4 documentos SDD de la Etapa 1.2:
-   - `docs/reqs/f01_02_prd.md` — PRD: qué verificar y por qué
-   - `docs/specs/f01_02_spec.md` — SPEC: cómo verificar (contratos técnicos con Supabase)
-   - `docs/plans/f01_02_plan.md` — Plan de implementación de la etapa
-   - `docs/tasks/f01_02_task.md` — Lista atómica de tareas ejecutables
-2. Una vez aprobados los SDD, ejecutar las tareas de Etapa 1.2 (verificación de tablas Supabase, triggers, índices, permisos y conectividad).
+1. **`[TSK-1-01]`** Abrir `.env` en la raíz y verificar que las 3 variables tienen valores reales (no placeholders): `SUPABASE_URL`, `SUPABASE_KEY`, `SUPABASE_SERVICE_ROLE_KEY`. Si alguna es placeholder, completarla antes de continuar.
+2. **`[TSK-1-02]`** Crear el venv: ejecutar `python -m venv venv` desde el directorio `pipeline/`.
+3. Continuar secuencialmente con `[TSK-1-03]` a `[TSK-1-08]` (Bloque 1 completo) antes de tocar cualquier archivo Python.
