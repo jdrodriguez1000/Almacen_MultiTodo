@@ -1,6 +1,6 @@
 ---
 name: python-reviewer
-description: Revisor de calidad y seguridad del código Python del proyecto Dashboard MultiTodo. Verifica buenas prácticas, ausencia de secretos hardcodeados, vulnerabilidades de seguridad y cumplimiento de estándares del proyecto. Usar SIEMPRE antes del commit de código (entre TSK-x-38 y TSK-x-39 en el bloque de cierre de etapa). Disparar ante frases como 'revisa el código', 'hay secretos en el código', 'valida la seguridad', 'code review', 'revisar antes del commit', o al llegar a la tarea de revisión de calidad del bloque de cierre.
+description: Revisor de calidad y seguridad del código Python del proyecto Dashboard MultiTodo. Verifica buenas prácticas, ausencia de secretos hardcodeados, vulnerabilidades de seguridad y cumplimiento de estándares del proyecto. Usar SIEMPRE antes del commit de código o en el bloque de cierre de etapa. Disparar ante frases como 'revisa el código', 'hay secretos en el código', 'valida la seguridad', 'code review', 'revisar antes del commit', o al llegar a la tarea de revisión de calidad del bloque de cierre.
 tools: Read, Grep, Glob, Bash
 model: inherit
 color: red

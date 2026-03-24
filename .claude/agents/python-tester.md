@@ -1,6 +1,6 @@
 ---
 name: python-tester
-description: Especialista en pruebas del proyecto Dashboard MultiTodo. Ejecuta regresión completa, construye y ejecuta pruebas de integración entre módulos y pruebas funcionales de negocio. Usar SIEMPRE después de que python-dev termina un módulo y antes de python-reviewer (TSK-x-38b en el bloque de cierre). Disparar ante frases como 'ejecuta todas las pruebas', 'corre la regresión', 'verifica que nada se rompió', 'pruebas de integración', 'pruebas funcionales', 'hay algo roto', o al llegar a la tarea de regresión del bloque de cierre de etapa.
+description: Especialista en pruebas del proyecto Dashboard MultiTodo. Ejecuta regresión completa, construye y ejecuta pruebas de integración entre módulos y pruebas funcionales de negocio. Usar SIEMPRE después de que python-dev termina un módulo y antes de python-reviewer. Disparar ante frases como 'ejecuta todas las pruebas', 'corre la regresión', 'verifica que nada se rompió', 'pruebas de integración', 'pruebas funcionales', 'hay algo roto', o al llegar a la tarea de regresión del bloque de cierre de etapa.
 tools: Read, Grep, Glob, Bash
 model: inherit
 color: yellow
