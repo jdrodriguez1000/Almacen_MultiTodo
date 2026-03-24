@@ -114,6 +114,7 @@ Desarrollado por **Sabbia Solutions & Services (Triple S)** para el cliente **Al
     *   `/sdd-doc`: Crea o actualiza cualquiera de los 4 documentos SDD (PRD/SPEC/Plan/Tasks).
     *   `/close-stage`: Cierra formalmente una etapa generando `docs/executives/f[F]_[E]_executive.md`.
     *   `/change-control`: Gestiona el ciclo de vida completo de un Control de Cambios.
+    *   `/git-push`: Sube el repositorio a GitHub respetando el Git Flow (`feat/*` → `dev` → `test` → `prod`). Maneja configuración inicial del remoto y pushes de ramas individuales.
 
 ---
 
