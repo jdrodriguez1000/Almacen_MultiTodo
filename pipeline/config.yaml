@@ -57,3 +57,16 @@ alerts:
     obsoleto_dias_sin_venta: 30      # ALT_NEG_005: sin ventas en 30+ días
     abc_clase_a_percentil: 0.20      # Top 20% SKUs por valor acumulado
     abc_clase_b_percentil: 0.50      # Siguientes 30% (20% a 50%)
+
+infrastructure:
+  # Lista de tablas del cliente a verificar en Etapa 1.2
+  usr_tables_to_verify:
+    - "usr_ventas"
+    - "usr_inventario"
+    - "usr_productos"
+    - "usr_sedes"
+  # Lista de tablas tss_* operativas a crear en Etapa 1.2
+  tss_operational_tables:
+    - "tss_error_log"
+    - "tss_pipeline_log"
+    - "tss_quarantine"

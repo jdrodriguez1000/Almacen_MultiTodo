@@ -16,6 +16,7 @@ __pycache__/
 
 # Configuración MCP local (credenciales de herramientas)
 .mcp.json
+.claude/settings.local.json
 
 # Dependencias Node.js
 node_modules/
