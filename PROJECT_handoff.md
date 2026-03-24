@@ -6,42 +6,43 @@
 
 ## Punto de Guardado
 
-- **Última actualización:** 2026-03-24 — Cierre de sesión (SDD Etapa 1.2 completado)
-- **Fase / Etapa:** `Fase 1 — Etapa 1.2` (SDD aprobado, implementación pendiente de iniciar)
+- **Última actualización:** 2026-03-24 — Cierre de sesión (Etapa 1.2 cerrada formalmente)
+- **Fase / Etapa:** `Fase 1 — Etapa 1.3` (Data Contract — pendiente de iniciar)
 
 ---
 
 ## Archivos en el Escritorio (Working Set)
 
-- `docs/reqs/f01_02_prd.md` — Creado esta sesión. 4 objetivos, 8 REQs, 5 METs, 3 RSKs. ✅ Aprobado.
-- `docs/specs/f01_02_spec.md` — Creado esta sesión. 5 componentes ARC, DDL de 3 tablas `tss_*`, 7 funciones de `supabase_client.py`, 12 tests especificados. ✅ Aprobado.
-- `docs/plans/f01_02_plan.md` — Creado esta sesión. 5 bloques, ruta crítica definida, protocolos de bloqueador RSK-01 y RSK-03, DoD con 12 ítems. ✅ Aprobado.
-- `docs/tasks/f01_02_task.md` — Creado esta sesión. 43 tareas atómicas (TSK-1-01 a TSK-1-43), todas `[ ]` pendientes. ✅ Listo para ejecutar.
-- `PROJECT_handoff.md` — Este archivo (reescrito al cierre de esta sesión).
+- `pipeline/src/supabase_client.py` — Creado esta sesión. Módulo funcional con 7 funciones atómicas. Commiteado en `feat/etapa-1-2`. ✅
+- `pipeline/tests/test_supabase_client.py` — 12 tests de integración contra Supabase real. 12/12 verde. Commiteado en `feat/etapa-1-2`. ✅
+- `pipeline/requirements.txt` — Dependencias fijadas (supabase 2.28.3, pandas 3.0.1, etc.). Commiteado en `feat/etapa-1-2`. ✅
+- `pipeline/pytest.ini` — Configurado con `pytest-dotenv` y `env_files = ../.env`. Commiteado en `feat/etapa-1-2`. ✅
+- `pipeline/config.yaml` — Sección `infrastructure:` agregada. Commiteado en `main`. ✅
+- `docs/database/schema.sql` — DDL completo de 7 tablas (4 `usr_*` + 3 `tss_*`). Commiteado en `main`. ✅
+- `docs/tasks/f01_02_task.md` — 35/35 tareas marcadas `[x]`. Commiteado en `main`. ✅
+- `docs/executives/f01_02_executive.md` — Resumen ejecutivo generado. Gate de avance cumplido. Commiteado en `main`. ✅
+- `PROJECT_index.md` — Coordenadas actualizadas a Etapa 1.3. Commiteado en `main`. ✅
 
 ---
 
 ## Contexto Inmediato
 
-En esta sesión se construyó el SDD completo de la Etapa 1.2 (Validación de Infraestructura). Los 4 documentos están aprobados y definen con precisión qué construir (`f01_02_prd.md`), cómo construirlo (`f01_02_spec.md`), en qué orden (`f01_02_plan.md`) y con qué tareas atómicas (`f01_02_task.md`). La implementación no ha comenzado — no se ha tocado ningún archivo de código. Los SDD pendientes de commitear a `main` también fueron subidos a GitHub en esta sesión.
+La Etapa 1.2 (Validación de Infraestructura) quedó completamente cerrada: 35/35 tareas ejecutadas, 12/12 tests en verde, tablas `tss_*` creadas en Supabase, `schema.sql` sincronizado, resumen ejecutivo generado. El código de la etapa vive en la rama `feat/etapa-1-2` (commit `da58ed2`); los documentos de gobernanza en `main` (commit `e40df15`).
 
-**Decisiones de diseño clave registradas en la SPEC:**
-- `supabase_client.py`: módulo funcional (no clase), 7 funciones atómicas.
-- Tablas `tss_error_log`, `tss_pipeline_log`, `tss_quarantine` se crean en esta etapa (infraestructura base, no Fase 2).
-- `create_tss_tables()` es idempotente (`CREATE TABLE IF NOT EXISTS`).
-- 12 tests de integración contra Supabase real — sin mocks de BD (mandato CLAUDE.md §5).
-- Código Python va a rama `feat/etapa-1-2`; documentos SDD van a `main`.
+Incidente relevante resuelto: el `.env` tenía `SUPABASE_PROJECT_ID` apuntando al proyecto inactivo `Demo_Bunuelos` (`pbsqivxcwyomplqgoqva`). Fue corregido al proyecto activo `Demo_Dashboard` (`ebqrvegxefahumxytgbj`) por el db-agent durante la sesión.
+
+La próxima etapa es **Etapa 1.3 — Data Contract**: formalizar el contrato técnico entre MultiTodo y Triple S sobre formato, frecuencia y validaciones de los datos que el cliente debe entregar diariamente.
 
 ---
 
 ## Bloqueador / Último Error
 
-Ninguno — la sesión cerró en estado limpio. Los 4 documentos SDD fueron generados sin inconsistencias ni discrepancias de trazabilidad.
+Ninguno — la sesión cerró en estado limpio. Etapa 1.2 completada al 100%.
 
 ---
 
-## Próxima Acción Inmediata
+## Proxima Accion Inmediata
 
-1. **`[TSK-1-01]`** Abrir `.env` en la raíz y verificar que las 3 variables tienen valores reales (no placeholders): `SUPABASE_URL`, `SUPABASE_KEY`, `SUPABASE_SERVICE_ROLE_KEY`. Si alguna es placeholder, completarla antes de continuar.
-2. **`[TSK-1-02]`** Crear el venv: ejecutar `python -m venv venv` desde el directorio `pipeline/`.
-3. Continuar secuencialmente con `[TSK-1-03]` a `[TSK-1-08]` (Bloque 1 completo) antes de tocar cualquier archivo Python.
+1. **Invocar `/sdd-doc`** para crear el PRD de la Etapa 1.3 (`docs/reqs/f01_03_prd.md`). El Data Contract es la única etapa que requiere validación explícita con el cliente — el PRD debe incluir las reglas de validación de `CLAUDE.md §8` como punto de partida y proponer el protocolo de rechazo de datos.
+2. Tras aprobación del PRD, crear SPEC (`f01_03_spec.md`), Plan (`f01_03_plan.md`) y Tareas (`f01_03_task.md`) con `/sdd-doc`.
+3. El código de Etapa 1.3 irá a rama `feat/etapa-1-3`; los documentos SDD a `main`.

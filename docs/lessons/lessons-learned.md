@@ -76,6 +76,36 @@
 - `create_tss_tables()` diseñada como idempotente (`CREATE TABLE IF NOT EXISTS`) — el script de infraestructura puede re-ejecutarse sin consecuencias.
 - TDD estricto en B2: los 12 tests se escriben todos juntos primero (fase RED), luego implementación función por función (fase GREEN) — mandato documentado en las tareas.
 
+---
+
+#### Sesión: 2026-03-24 (implementación)
+
+**✅ Lo que funcionó bien:**
+- El flujo de agentes especializados (python-dev → db-agent) funcionó perfectamente: el python-dev escribió tests e implementó el módulo; el db-agent creó las tablas en Supabase. División de responsabilidades clara y sin solapamiento.
+- Los 12 tests de integración contra Supabase real pasaron al 100% en la ejecución final — el ciclo RED→GREEN fue preciso.
+- `verify_table_schema()` usando la OpenAPI spec de PostgREST (`/rest/v1/`) fue la solución correcta para consultar columnas sin depender de `information_schema` (no expuesta por PostgREST por defecto).
+- La separación de commits por tipo (código a `feat/etapa-1-2`, documentos a `main`) se ejecutó sin fricciones — el working directory limpio al final confirmó que nada quedó sin commitear.
+- El usuario detectó proactivamente que los cambios se hacían en `main` — la aclaración fue rápida porque nada estaba commiteado aún.
+
+**⚠️ Lo que no funcionó / fricción encontrada:**
+- `create_tss_tables()` vía Management API de Supabase (`api.supabase.com/v1/projects/{ref}/database/query`) respondía con error 544 (timeout). La función no puede crear DDL directamente desde `supabase-py` — requiere el agente db-agent o acceso directo a PostgreSQL.
+- `SUPABASE_PROJECT_ID` en `.env` apuntaba al proyecto inactivo `Demo_Bunuelos` en lugar de `Demo_Dashboard`. El error fue silencioso hasta que el db-agent hizo la inspección — no fue detectado por los tests de conectividad porque las credenciales (URL y KEY) ya eran correctas.
+- Los tests CRUD limpian (DELETE) después de sí mismos, lo que hace que `tss_pipeline_log` quede vacío al final. La verificación de Triple Persistencia debió ajustar la expectativa: count=0 es correcto en cierre de etapa, no en producción.
+
+**💡 Decisiones clave tomadas:**
+- `verify_table_exists()` implementada con captura de `APIError` código `PGRST205` (intentar SELECT en tabla inexistente) en lugar de consultar `information_schema` — más robusto con PostgREST.
+- Las tablas `tss_*` deben crearse vía db-agent (MCP de Supabase) en todas las etapas futuras. No intentar DDL desde `supabase-py` — no es el canal correcto.
+- Agentes especializados creados y operativos: `db-agent` para Supabase/PostgreSQL, `python-dev` para TDD Python, `project-manager` para gobernanza documental.
+
+### 📋 Resumen de la Etapa 1.2
+
+**Lecciones más valiosas:**
+1. **El agente db-agent es el canal correcto para DDL en Supabase:** `supabase-py` no soporta DDL vía PostgREST. Todo `CREATE TABLE`, `ALTER TABLE` o cambio estructural debe ir por db-agent (MCP). Documentar esto en la SPEC de cada etapa que involucre cambios de esquema.
+2. **Verificar SUPABASE_PROJECT_ID además de URL y KEY:** El `.env` puede tener las credenciales correctas pero el identificador de proyecto incorrecto. Agregar una verificación explícita del project ID al inicio de sesión cuando el agente db-agent entre en acción.
+3. **PostgREST no expone `information_schema` por defecto:** Las consultas de introspección de esquema deben usar la OpenAPI spec de PostgREST (`/rest/v1/`) o captura de errores `PGRST205`, no `information_schema.tables/columns` directamente.
+
+---
+
 ### Etapa 1.3 — Data Contract
 *(Pendiente de inicio.)*
 
