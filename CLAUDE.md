@@ -33,7 +33,8 @@ Desarrollado por **Sabbia Solutions & Services (Triple S)** para el cliente **Al
     3. Leer `PROJECT_handoff.md` — Retomar el estado táctico exacto: archivos activos, bloqueador pendiente y próxima acción.
     4. Leer `docs/lessons/lessons-learned.md` — **Solo la sección de la etapa activa.** Internalizar errores pasados y decisiones validadas para no repetirlos.
     5. Leer `docs/changes/` — **Solo los CCs en estado `✅ Aprobado`.** Ignorar Pendientes y No Aprobados.
-    *   Solo después de completar los 5 pasos el agente está autorizado a escribir código o ejecutar acciones.
+    6. Leer `docs/database/schema.sql` — Conocer el estado actual del esquema de Supabase: tablas, columnas, tipos de datos, constraints, triggers e índices. **Si el archivo no existe o está vacío, registrar como pendiente de crear en Etapa 1.2.**
+    *   Solo después de completar los 6 pasos el agente está autorizado a escribir código o ejecutar acciones.
 
 *   **Protocolo de Cierre de Sesión:**
     *   Cuando el usuario diga **"Terminamos"** o señale el fin de la sesión, es **OBLIGACIÓN** del agente reescribir `PROJECT_handoff.md` con el estado exacto al momento del cierre: archivos modificados, contexto inmediato, último error/bloqueador y próxima acción concreta.
@@ -404,3 +405,8 @@ Desarrollado por **Sabbia Solutions & Services (Triple S)** para el cliente **Al
     *   Una etapa cuenta como cerrada **únicamente** si existe su archivo `docs/executives/f[F]_[E]_executive.md`.
     *   Si se agregan etapas, el porcentaje puede bajar. El próximo ejecutivo cerrado debe incluir nota explicativa al cliente:
         > ⚠️ Nota de Alcance: El avance bajó de X% a Y% porque se incorporaron Z etapas nuevas. El trabajo completado no cambió — el alcance del proyecto creció.
+
+---
+
+> **Control de Cambio:** Este documento fue modificado por `CC_00001` (2026-03-24).
+> Cambio aplicado: Paso 6 agregado al Protocolo de Inicio de Sesión (§1) — lectura obligatoria de `docs/database/schema.sql`.

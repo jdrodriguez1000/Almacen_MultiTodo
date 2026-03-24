@@ -47,7 +47,7 @@
 | Tareas (tasks) | `docs/tasks/` | ✅ Existe (f01_01) |
 | Lecciones Aprendidas | `docs/lessons/lessons-learned.md` | ✅ Existe |
 | Resúmenes Ejecutivos | `docs/executives/` | ⬜ Pendiente (gate de etapa 1.1) |
-| Control de Cambios | `docs/changes/` | ⬜ Sin CCs activos |
+| Control de Cambios | `docs/changes/` | ✅ CC_00001 Aprobado |
 | Schema Base de Datos | `docs/database/schema.sql` | ⬜ Pendiente — Etapa 1.2 |
 
 ---
@@ -83,3 +83,4 @@
 - **2026-03-23** — `PROJECT_index.md` creado como primer artefacto de gobernanza. El proyecto arranca en Fase 1 — Etapa 1.1. Ningún documento SDD existe aún.
 - **2026-03-23** — Etapa 1.1 completada. Repositorio Git inicializado, rama `main` activa, remoto conectado a `https://github.com/jdrodriguez1000/Almacen_MultiTodo.git`. 24 artefactos commiteados. Primer commit: `790e39a`. Avance global: 8.33% (1/12 etapas).
 - **2026-03-23** — `contexto.md` y `temp.md` presentes en el directorio de trabajo pero excluidos del repositorio vía `.gitignore` por decisión del usuario.
+- **2026-03-24** — CC_00001 aprobado y ejecutado. `CLAUDE.md §1` actualizado: Paso 6 agrega lectura obligatoria de `docs/database/schema.sql` al Protocolo de Inicio de Sesión.
