@@ -162,6 +162,22 @@
 - Los colores de **Recharts** no se hardcodean — se calculan dinámicamente con `useTheme()` via `chartColors` object para soportar dark mode correctamente.
 - Agente `ui-ux-prototyper` tiene scope **exclusivo a `web/`** — no toca pipeline/, docs/ ni Supabase. Esta restricción está documentada en el agente y es no negociable.
 
+#### Sesión: 2026-03-25 (deduplicación de gobernanza)
+
+**✅ Lo que funcionó bien:**
+- El proceso de auditoría agente por agente (leer → mapear → presentar análisis → esperar aprobación → ejecutar) fue preciso y sin retrocesos en los 6 agentes y 8 skills revisados.
+- La estrategia de "mapa de solapamiento" con porcentajes fue efectiva para comunicar al usuario qué se eliminaría y por qué antes de tocar nada.
+- Distinguir entre duplicación pura (eliminar), extensión válida (conservar) y guardarraíl de seguridad (conservar aunque repita) evitó sobre-eliminar contenido que tiene valor en punto de ejecución.
+- Los skills `sdd-doc`, `sow-doc`, `update-index`, y los agentes `python-reviewer`, `python-tester` se validaron como correctos sin cambios — el ejercicio confirmó que estaban bien construidos.
+
+**⚠️ Lo que no funcionó / fricción encontrada:**
+- Ninguna fricción técnica. El único patrón recurrente fue que los agentes tenían más duplicación que los skills — los agentes tendían a copiar protocolos completos de CLAUDE.md §1, mientras que los skills mayormente tenían contenido táctico único.
+
+**💡 Decisiones clave tomadas:**
+- **Política de Responsabilidad Única establecida:** CLAUDE.md = ley suprema (qué y por qué), Agente = orquestador/gatillo (cuándo y a quién derivar), Skill = manual táctico (cómo ejecutar paso a paso). Cada capa referencia hacia arriba, nunca copia.
+- **Guardarraíles de seguridad son válidos aunque repitan:** Una regla que aparece en CLAUDE.md y también como primera línea de un skill de ejecución (ej: "nunca ejecutar sin CC aprobado") no es duplicación — es un recordatorio en punto crítico. Se conserva.
+- **La tabla de routing situación→skill en `project-manager.md` es el contenido único del agente:** Todo lo demás del agente era copia de CLAUDE.md §1. La tabla es el valor real del orquestador.
+
 ---
 
 ## Fase 3 — Analítica y Alertas
