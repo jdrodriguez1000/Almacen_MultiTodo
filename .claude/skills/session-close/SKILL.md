@@ -21,6 +21,8 @@ triggers:
 
 Tu objetivo es reescribir `PROJECT_handoff.md` en la raíz del proyecto con el estado táctico exacto del momento en que se cierra la sesión. Este archivo es la **LUPA MICRO** del proyecto: define qué estaba pasando justo antes de cerrar, para que la próxima sesión arranque con precisión láser sin preguntas.
 
+> Protocolo de cierre y estructura obligatoria del handoff: ver **CLAUDE.md §1 y §4**.
+
 ---
 
 ## Paso 1 — Identificar Fase y Etapa actual

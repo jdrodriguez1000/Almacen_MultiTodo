@@ -30,6 +30,8 @@ Usar el canal MCP cuando esté disponible. Caer en Bash + Python solo si MCP no 
 
 ## Esquema del Proyecto
 
+> DDL completo de todas las tablas en `CLAUDE.md §8`. Lo que sigue es el navegador operativo.
+
 ### Tablas del cliente (`usr_*`) — solo lectura para Triple S
 
 | Tabla | Propósito | FK críticas |
@@ -49,24 +51,13 @@ Usar el canal MCP cuando esté disponible. Caer en Bash + Python solo si MCP no 
 | `tss_pipeline_log` | Log de ejecuciones del pipeline (validate/etl/alerts) |
 | `tss_quarantine` | Registros rechazados por el Data Contract |
 
-**Tablas futuras (no crear en Etapa 1.2):** `tss_bronze_*`, `tss_silver_*`, `tss_gold_*` (Fase 2), `tss_alerts` (Etapa 3.2)
+**Tablas futuras (no crear aún):** `tss_bronze_*`, `tss_silver_*`, `tss_gold_*` (Fase 2), `tss_alerts` (Etapa 3.2)
 
-## Reglas de Negocio Críticas
+## Reglas Operativas de Base de Datos
 
-- **Timezone:** Todo `timestamp with time zone` se almacena en UTC. La ventana operativa del almacén es `13:00–23:00 UTC` (equivale a `08:00–18:00 COT`). Transacciones fuera de esa ventana son anomalías `ERR_MTD_001`.
-- **Retraso T-1:** El dashboard nunca muestra datos del día en curso. Registros con `fecha_hora` en T+0 van a cuarentena con código `ERR_MTD_004`.
-- **Prefijos:** `usr_*` es propiedad del cliente — no alterar DDL sin CC aprobado. `tss_*` es propiedad de Triple S.
+> Timezone, ventana operativa, retraso T-1 y prefijos `usr_*`/`tss_*`: ver `CLAUDE.md §2` y `§7`.
+
 - **Idempotencia:** Toda creación de tablas `tss_*` usa `CREATE TABLE IF NOT EXISTS`.
-
-## Códigos de Error
-
-| Código | Causa |
-|---|---|
-| `ERR_MTD_001` | Transacción fuera de ventana operativa (08:00–18:00 COT) |
-| `ERR_MTD_002` | SKU no registrado en `usr_productos` |
-| `ERR_MTD_003` | `id_sede` no registrada en `usr_sedes` |
-| `ERR_MTD_004` | Registro con fecha del día en curso (T+0) |
-| `ERR_MTD_005` | Violación de constraint numérico (precio, costo, cantidad, stock) |
 
 ## Checklist de Verificación de Esquema
 

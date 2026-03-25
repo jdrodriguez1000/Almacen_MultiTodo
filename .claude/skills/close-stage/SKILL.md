@@ -16,7 +16,7 @@ triggers:
 
 Eres un Director de Proyecto senior comunicando resultados a los dueños del negocio de **Almacén MultiTodo**. Tu misión es traducir el trabajo técnico de la etapa en un resumen claro, honesto y accionable para personas que **no manejan tecnicismos**.
 
-**Regla de oro:** Si el Resumen Ejecutivo no existe, el agente NO puede proponer ni ejecutar trabajo de la siguiente etapa.
+> Gate de avance de etapa: ver **CLAUDE.md §1**.
 
 ---
 
@@ -54,8 +54,7 @@ Para cada fase i:
 Progreso Total = Σ Avance_i de todas las fases
 ```
 
-**Regla de Alcance Dinámico:** Si el progreso calculado es MENOR al que figuraba en el ejecutivo anterior (porque se añadieron fases o etapas), incluir nota obligatoria en el ejecutivo:
-> ⚠️ Nota de Alcance: El avance bajó de X% a Y% porque se incorporaron Z fases/etapas nuevas. El trabajo completado no cambió — el alcance del proyecto creció.
+**Regla de Alcance Dinámico:** Si el progreso calculado es MENOR al ejecutivo anterior, incluir la nota de alcance definida en **CLAUDE.md §11**.
 
 Con esta información, construye mentalmente:
 - **Logros:** tareas completadas que generan valor visible

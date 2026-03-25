@@ -22,20 +22,15 @@ Gestiona el push al repositorio GitHub respetando estrictamente el **Git Flow de
 
 ## Reglas de Oro (leer antes de ejecutar cualquier paso)
 
-```
-main   → Rama de GOBERNANZA. Solo docs SDD, ejecutivos, CLAUDE.md.
-         NUNCA código ejecutable. NUNCA merge desde feat/dev/test/prod.
+> Flujo completo, restricciones por rama y paso crítico `test → dev → prod`: ver **CLAUDE.md §6**.
 
-prod   → Rama de código en PRODUCCIÓN visible para el cliente.
-         Solo recibe merges desde dev (después del ciclo test → dev → prod).
-
-test   → Rama de pruebas. NUNCA hace merge directo a prod.
-         Flujo obligatorio: test → dev → prod.
-
-dev    → Rama de integración. Recibe feat/* y arreglos de test.
-
-feat/* → Ramas de desarrollo individual. Merge hacia dev únicamente.
-```
+| Rama | Tipo | Restricción clave |
+|---|---|---|
+| `main` | Gobernanza | Solo docs. NUNCA código ejecutable |
+| `prod` | Producción | Solo recibe merges desde `dev` |
+| `test` | Pruebas | NUNCA merge directo a `prod` |
+| `dev` | Integración | Recibe `feat/*` y arreglos de `test` |
+| `feat/*` | Desarrollo | Merge hacia `dev` únicamente |
 
 **Flujo único permitido:** `feat/*` → `dev` → `test` → `dev` (sincronizar arreglos) → `prod`
 

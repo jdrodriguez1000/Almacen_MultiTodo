@@ -14,35 +14,6 @@ Al ser invocado:
 3. Verificar que la tarea está contemplada en el SDD — si no lo está, detener y notificar para CC
 4. Ejecutar en ciclo TDD: test primero → implementación mínima → refactor
 
-## Stack del Proyecto
-
-| Librería | Uso |
-|---|---|
-| `supabase-py` | Cliente Supabase — conexión, queries, RPC |
-| `pandas` | Manipulación de DataFrames en ETL |
-| `pandera` | Validación de esquemas de DataFrames (Silver y Gold) |
-| `python-dotenv` | Carga de variables de entorno desde `.env` |
-| `pydantic` | Validación de modelos de datos |
-| `pytz` | Conversión de timezone UTC → `America/Bogota` (COT) |
-| `pytest` | Suite de tests de integración |
-| `pytest-dotenv` | Inyección automática de `.env` en pytest |
-
-## Estructura del Pipeline
-
-```
-pipeline/
-├── main.py              # Gateway — modos: validate | etl | alerts
-├── config.yaml          # Rutas, nombres de tablas, umbrales (sin secretos)
-├── .env                 # Secretos (no trackeado en Git)
-├── requirements.txt     # Dependencias fijadas con versiones exactas
-├── pytest.ini           # Configuración pytest + pytest-dotenv
-├── pipelines/           # Orquestadores — definen el orden de los pasos
-├── src/                 # Lógica atómica — toda la lógica de negocio vive aquí
-└── tests/               # Espeja la estructura de src/
-```
-
-**Regla de separación:** Prohibido escribir lógica de transformación en `main.py` o en `pipelines/`. Toda la lógica de negocio va en `src/`.
-
 ## Mandato TDD (orden obligatorio)
 
 1. **FASE RED:** Escribir el test completo antes de crear el módulo. Confirmar que falla con `ImportError` o `ModuleNotFoundError`.
@@ -53,28 +24,8 @@ Nunca escribir implementación sin test previo. Nunca avanzar al siguiente bloqu
 
 ## Estándares de Código
 
-- **Cero hardcoding:** URLs, keys y nombres de tablas fuera del código. Secretos en `.env`, rutas en `config.yaml`.
-- **Prohibido usar `pass`:** Los errores se mapean a códigos `ERR_MTD_XXX` y se registran en `tss_error_log`.
-- **Timezone:** Siempre usar `pytz.timezone('America/Bogota')`. Prohibido offsets manuales como `-5`.
 - **Módulos funcionales:** Sin clases con estado compartido entre funciones (ver `supabase_client.py`).
 - **Idioma:** Código y nombres de variables en inglés. Comentarios y docstrings en español.
-
-## Códigos de Error del Pipeline
-
-| Código | Causa |
-|---|---|
-| `ERR_MTD_001` | Transacción fuera de ventana operativa (08:00–18:00 COT) |
-| `ERR_MTD_002` | SKU no registrado en `usr_productos` |
-| `ERR_MTD_003` | `id_sede` no registrada en `usr_sedes` |
-| `ERR_MTD_004` | Registro con fecha del día en curso (T+0) |
-| `ERR_MTD_005` | Violación de constraint numérico (precio, costo, cantidad, stock) |
-
-## Triple Persistencia de Estado (mandato)
-
-Todo proceso crítico debe registrarse en 3 canales:
-1. Archivo local `latest` (salida en terminal)
-2. Log detallado con timestamp en archivo
-3. Tabla `tss_pipeline_log` en Supabase
 
 ## Checklist antes de entregar código
 

@@ -125,50 +125,7 @@ Ver `references/checklist.md` para el detalle de Fase 8.
 
 ---
 
-## 6. Stack exacto del prototipo
-
-| Tecnología | Versión | Configuración clave |
-|---|---|---|
-| Next.js | 14+ App Router | Sin `src/pages/` — solo `src/app/` |
-| TypeScript | 5+ | `strict: true`, path alias `@/*` → `./src/*` |
-| Tailwind CSS | 3+ | `darkMode: 'class'` obligatorio |
-| `lucide-react` | latest | Íconos outline para toda la UI |
-| `recharts` | 2+ | Gráficos con colores dinámicos (no hardcodeados) |
-| `next/font/google` | built-in | Fuente Inter — no instalar nada extra |
-
-**Dependencias `package.json`:**
-```json
-"recharts": "^2.x",
-"lucide-react": "^0.x"
-```
-`next/font/google` viene incluido en Next.js — no instalar por separado.
-
----
-
-## 7. Estructura de carpetas del prototipo
-
-```
-web/
-└── src/
-    ├── app/                    # App Router — vistas
-    │   ├── layout.tsx          # Root layout: fuente, banners, sidebar, área de contenido
-    │   ├── page.tsx            # Vista principal (Resumen / Home)
-    │   └── globals.css         # Tailwind directives + dark background en html
-    ├── components/
-    │   ├── layout/             # Header, Sidebar, BannerPrototipo, ThemeToggle
-    │   └── shared/             # KpiCard, gráficos, tablas genéricas
-    ├── services/               # ÚNICA capa que importa de data/
-    ├── types/                  # usr.types.ts + gold.types.ts
-    ├── data/                   # mock_*.json — solo accesibles desde services/
-    └── hooks/                  # useTheme.ts
-```
-
-Cada proyecto añade subcarpetas bajo `components/` según sus dominios de negocio
-(ej: `alertas/`, `inventario/`, `ventas/`). La estructura base siempre es la misma.
-
----
-
-## 8. Configuración inicial obligatoria (Bloque 0)
+## 6. Configuración inicial obligatoria (Bloque 0)
 
 Al inicializar el proyecto, estos tres archivos deben quedar configurados antes de escribir
 cualquier componente:
@@ -215,7 +172,24 @@ export default config
 
 ---
 
-## 9. Referencias detalladas
+## 7. Cómo reportar progreso
+
+Al completar cada tarea, reportar con el formato:
+
+```
+✅ TSK-X-X-XXX — [descripción breve de lo que se creó]
+   Archivo: web/src/[ruta/del/archivo.tsx]
+   Gate: [resultado de tsc/lint si aplica]
+
+⏭ Siguiente: TSK-X-X-XXX — [descripción de la siguiente tarea]
+```
+
+Al completar un bloque completo, reportar el gate de salida del bloque y preguntar
+si continuar con el siguiente.
+
+---
+
+## 8. Referencias detalladas
 
 Leer los archivos de referencia cuando se necesite detalle específico:
 
