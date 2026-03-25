@@ -6,43 +6,38 @@
 
 ## Punto de Guardado
 
-- **Última actualización:** 2026-03-24 — Cierre de sesión (Etapa 1.2 cerrada formalmente)
-- **Fase / Etapa:** `Fase 1 — Etapa 1.3` (Data Contract — pendiente de iniciar)
+- **Última actualización:** 2026-03-24 — Cierre de sesión (Etapa 1.3 cerrada formalmente)
+- **Fase / Etapa:** `Fase 2 — Etapa 2.1` (Pipeline de validación — pendiente de iniciar)
 
 ---
 
 ## Archivos en el Escritorio (Working Set)
 
-- `pipeline/src/supabase_client.py` — Creado esta sesión. Módulo funcional con 7 funciones atómicas. Commiteado en `feat/etapa-1-2`. ✅
-- `pipeline/tests/test_supabase_client.py` — 12 tests de integración contra Supabase real. 12/12 verde. Commiteado en `feat/etapa-1-2`. ✅
-- `pipeline/requirements.txt` — Dependencias fijadas (supabase 2.28.3, pandas 3.0.1, etc.). Commiteado en `feat/etapa-1-2`. ✅
-- `pipeline/pytest.ini` — Configurado con `pytest-dotenv` y `env_files = ../.env`. Commiteado en `feat/etapa-1-2`. ✅
-- `pipeline/config.yaml` — Sección `infrastructure:` agregada. Commiteado en `main`. ✅
-- `docs/database/schema.sql` — DDL completo de 7 tablas (4 `usr_*` + 3 `tss_*`). Commiteado en `main`. ✅
-- `docs/tasks/f01_02_task.md` — 35/35 tareas marcadas `[x]`. Commiteado en `main`. ✅
-- `docs/executives/f01_02_executive.md` — Resumen ejecutivo generado. Gate de avance cumplido. Commiteado en `main`. ✅
-- `PROJECT_index.md` — Coordenadas actualizadas a Etapa 1.3. Commiteado en `main`. ✅
+- `docs/reqs/f01_03_prd.md` — PRD con tags OBJ/REQ/DAT/MET. Commiteado en `main`. ✅
+- `docs/specs/f01_03_spec.md` — SPEC con ARC-01–07, esquemas Pandera, protocolo de rechazo. Commiteado en `main`. ✅
+- `docs/plans/f01_03_plan.md` — Plan 4 bloques, 12 ítems WBS. Commiteado en `main`. ✅
+- `docs/tasks/f01_03_task.md` — 12/12 tareas completadas. Commiteado en `main`. ✅
+- `pipeline/config.yaml` — Sección `data_contract:` agregada. Commiteado en `main`. ✅
+- `docs/executives/f01_03_executive.md` — Resumen ejecutivo generado. Gate de avance cumplido. ✅
+- `docs/lessons/lessons-learned.md` — Sección Etapa 1.3 completada con 3 lecciones clave. ✅
+- `docs/database/schema.sql` — RLS habilitado en 3 tablas `tss_*` con políticas SELECT para `authenticated`. ✅
 
 ---
 
 ## Contexto Inmediato
 
-La Etapa 1.2 (Validación de Infraestructura) quedó completamente cerrada: 35/35 tareas ejecutadas, 12/12 tests en verde, tablas `tss_*` creadas en Supabase, `schema.sql` sincronizado, resumen ejecutivo generado. El código de la etapa vive en la rama `feat/etapa-1-2` (commit `da58ed2`); los documentos de gobernanza en `main` (commit `e40df15`).
-
-Incidente relevante resuelto: el `.env` tenía `SUPABASE_PROJECT_ID` apuntando al proyecto inactivo `Demo_Bunuelos` (`pbsqivxcwyomplqgoqva`). Fue corregido al proyecto activo `Demo_Dashboard` (`ebqrvegxefahumxytgbj`) por el db-agent durante la sesión.
-
-La próxima etapa es **Etapa 1.3 — Data Contract**: formalizar el contrato técnico entre MultiTodo y Triple S sobre formato, frecuencia y validaciones de los datos que el cliente debe entregar diariamente.
+La Fase 1 (Gobernanza y Cimientos) está completamente cerrada: 3/3 etapas con resumen ejecutivo. El progreso global es 25%. Toda la infraestructura y gobernanza documental está lista para iniciar la Fase 2. La próxima etapa (2.1 — Pipeline de Validación) tiene todos sus insumos disponibles: contratos definidos en `f01_03_spec.md`, parámetros en `config.yaml`, módulos especificados en SPEC §3.
 
 ---
 
 ## Bloqueador / Último Error
 
-Ninguno — la sesión cerró en estado limpio. Etapa 1.2 completada al 100%.
+Ninguno — la sesión cerró en estado limpio. Etapa 1.3 completada al 100%.
 
 ---
 
 ## Proxima Accion Inmediata
 
-1. **Invocar `/sdd-doc`** para crear el PRD de la Etapa 1.3 (`docs/reqs/f01_03_prd.md`). El Data Contract es la única etapa que requiere validación explícita con el cliente — el PRD debe incluir las reglas de validación de `CLAUDE.md §8` como punto de partida y proponer el protocolo de rechazo de datos.
-2. Tras aprobación del PRD, crear SPEC (`f01_03_spec.md`), Plan (`f01_03_plan.md`) y Tareas (`f01_03_task.md`) con `/sdd-doc`.
-3. El código de Etapa 1.3 irá a rama `feat/etapa-1-3`; los documentos SDD a `main`.
+1. Invocar `/sdd-doc` Modo A para crear el PRD de Etapa 2.1 (`docs/reqs/f02_01_prd.md`). El pipeline de validación implementa los contratos de `f01_03_spec.md` — el PRD debe referenciar `[REQ-XX]` de la Etapa 1.3 como insumo.
+2. El código de Etapa 2.1 irá a rama `feat/etapa-2-1`; los documentos SDD a `main`.
+3. Recordar: los módulos de `pipeline/src/validators/` deben seguir TDD estricto (tests primero). Los agentes python-dev y python-tester serán los protagonistas de esta etapa.

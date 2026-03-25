@@ -43,10 +43,10 @@
 > Objetivo: Cerrar la etapa con todos los artefactos commiteados y los documentos de gobernanza actualizados.
 > Prerequisito obligatorio: B3 completado al 100%.
 
-- [ ] `[TSK-1-09]` Crear commit atómico en rama `main` con todos los artefactos de la etapa: `docs/reqs/f01_03_prd.md`, `docs/specs/f01_03_spec.md`, `docs/plans/f01_03_plan.md`, `docs/tasks/f01_03_task.md`, `pipeline/config.yaml`. Mensaje: `docs: etapa 1.3 — Data Contract formalizado`.
-- [ ] `[TSK-1-10]` Generar resumen ejecutivo `docs/executives/f01_03_executive.md` usando `/close-stage`. Este documento es el **gate obligatorio** para iniciar Etapa 2.1 — sin él, la Fase 2 no puede comenzar.
-- [ ] `[TSK-1-11]` Actualizar `PROJECT_index.md`: marcar Etapa 1.3 como ✅ completada, registrar `docs/executives/f01_03_executive.md` como existente y actualizar las coordenadas actuales a Etapa 2.1. Usar `/update-index`.
-- [ ] `[TSK-1-12]` Actualizar `PROJECT_handoff.md` con el estado exacto al cierre: archivos modificados en esta sesión, próxima acción inmediata (iniciar Etapa 2.1 con sus 4 documentos SDD), bloqueadores activos (ninguno esperado). Usar `/session-close`.
+- [x] `[TSK-1-09]` Crear commit atómico en rama `main` con todos los artefactos de la etapa: `docs/reqs/f01_03_prd.md`, `docs/specs/f01_03_spec.md`, `docs/plans/f01_03_plan.md`, `docs/tasks/f01_03_task.md`, `pipeline/config.yaml`. Mensaje: `docs: etapa 1.3 — Data Contract formalizado`.
+- [x] `[TSK-1-10]` Generar resumen ejecutivo `docs/executives/f01_03_executive.md` usando `/close-stage`. Este documento es el **gate obligatorio** para iniciar Etapa 2.1 — sin él, la Fase 2 no puede comenzar.
+- [x] `[TSK-1-11]` Actualizar `PROJECT_index.md`: marcar Etapa 1.3 como ✅ completada, registrar `docs/executives/f01_03_executive.md` como existente y actualizar las coordenadas actuales a Etapa 2.1. Usar `/update-index`.
+- [x] `[TSK-1-12]` Actualizar `PROJECT_handoff.md` con el estado exacto al cierre: archivos modificados en esta sesión, próxima acción inmediata (iniciar Etapa 2.1 con sus 4 documentos SDD), bloqueadores activos (ninguno esperado). Usar `/session-close`.
 
 ---
 
@@ -57,8 +57,8 @@
 | B1 — Documentación SDD | 4 | 4 ✅ | 0 |
 | B2 — Configuración base | 1 | 1 ✅ | 0 |
 | B3 — Verificación documental | 3 | 3 ✅ | 0 |
-| B4 — Cierre formal | 4 | 0 | 4 |
-| **Total** | **12** | **8** | **4** |
+| B4 — Cierre formal | 4 | 4 ✅ | 0 |
+| **Total** | **12** | **12** | **0** |
 
 ---
 

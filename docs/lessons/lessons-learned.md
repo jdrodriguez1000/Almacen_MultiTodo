@@ -107,7 +107,33 @@
 ---
 
 ### Etapa 1.3 — Data Contract
-*(Pendiente de inicio.)*
+
+#### Sesión: 2026-03-24
+
+**✅ Lo que funcionó bien:**
+- El flujo A→B→C→D del skill `/sdd-doc` produjo documentos con trazabilidad atómica completa: cada `[REQ-XX]` del PRD tiene componente en la SPEC, bloque en el Plan y tarea en el Task file. La verificación cruzada B3 confirmó 7/7 sin gaps.
+- La separación entre etapa de gobernanza (1.3 define) y etapa de implementación (2.1 implementa) evitó scope creep: la SPEC especifica contratos de interfaz, no código ejecutable.
+- Combinar `/sdd-doc` (estructura y trazabilidad) con el agente `project-manager` (revisión de consistencia) produjo documentos de mayor calidad que usando solo uno de los dos.
+- El agente `db-agent` habilitó RLS en las tablas `tss_*` sin fricción — acción correcta detectada proactivamente a partir del pedido del usuario.
+- La verificación documental del Bloque 3 (TSK-1-06 a TSK-1-08) confirmó 16/16 claves de `config.yaml` y 5/5 códigos ERR_MTD completos — el proceso de verificación fue eficiente porque los documentos ya tenían la estructura canónica.
+
+**⚠️ Lo que no funcionó / fricción encontrada:**
+- Los primeros borradores de PRD y SPEC fueron generados por el agente `project-manager` sin invocar `/sdd-doc`, lo que produjo etiquetas `RNB-XX` en lugar del sistema estándar `[REQ-XX]`. Ambos documentos debieron reconstruirse. Costo: una iteración adicional sin impacto en el contenido técnico.
+- El PRD y `CLAUDE.md §2` dicen "ventana operativa 13:00–23:00 UTC" pero la implementación correcta es `hora_utc ∈ [13, 22]`: la hora 23:00 UTC equivale exactamente a las 18:00 COT (cierre del almacén) y está **fuera** de la ventana. La SPEC tiene la definición precisa; el PRD y CLAUDE.md son una simplificación que puede inducir error al implementar. No se abrió CC porque no hay contradicción de negocio, pero sí hay riesgo de implementación incorrecta si el desarrollador solo lee el PRD.
+
+**💡 Decisiones clave tomadas:**
+- `data_contract:` en `config.yaml` como sección propia, separada de `tables:` y `pipeline:` — facilita que el pipeline de Etapa 2.1 cargue solo los parámetros del contrato sin acoplar otras configuraciones.
+- `ERR_MTD_004` es el único código con `block_batch` — todos los demás son `quarantine_record`. Esta asimetría es intencional: un dato de T+0 contamina la jornada completa; un SKU inválido solo invalida ese registro.
+- Umbral de fallo total fijado en 50%: si más de la mitad del lote es rechazado, es un problema sistémico (no un rechazo normal) y el pipeline escala a `status='failure'`.
+
+---
+
+### 📋 Resumen de la Etapa 1.3
+
+**Lecciones más valiosas:**
+1. **Invocar `/sdd-doc` desde el primer documento:** Los documentos generados directamente por el agente sin el skill pierden el sistema de tags estándar (`[REQ-XX]`, `[DAT-XX]`, etc.). Reconstruirlos tiene costo cero en contenido pero costo real en tiempo. La regla es simple: cualquier documento SDD debe pasar por `/sdd-doc`.
+2. **La ventana operativa tiene dos definiciones:** El PRD/CLAUDE.md dicen "13:00–23:00 UTC" (simplificación de negocio). La SPEC dice `[13, 22]` (implementación correcta). Al implementar `ERR_MTD_001` en Etapa 2.1, usar la definición de la SPEC: `13 <= hora_utc <= 22`. Nunca usar `hora_utc < 23` — las 23:00 UTC (18:00 COT) ya están fuera de la ventana operativa.
+3. **Las etapas de gobernanza pura tienen un artefacto de configuración como parte del DoD:** No solo documentos `.md` — la sección `data_contract:` en `config.yaml` es un entregable concreto y verificable de esta etapa. Incluir siempre la actualización de `config.yaml` en el DoD de etapas que definan contratos o parámetros de comportamiento.
 
 ---
 

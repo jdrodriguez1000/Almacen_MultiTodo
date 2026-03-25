@@ -6,14 +6,14 @@
 
 ## 📍 1. Coordenadas Actuales
 
-- **Fase Activa:** `Fase 1 — Gobernanza y Cimientos`
-- **Etapa Activa:** `Etapa 1.3 — Data Contract: especificación formal del contrato de datos cliente–Triple S`
+- **Fase Activa:** `Fase 2 — Ingeniería de Datos e Integración`
+- **Etapa Activa:** `Etapa 2.1 — Pipeline de validación`
 - **Capa Medallón Activa:** `N/A`
 - **Documentos SDD Gobernantes:** Leer obligatoriamente antes de tomar decisiones arquitectónicas:
-  - PRD:    `docs/reqs/f01_03_prd.md` 🔄 En progreso
-  - SPEC:   `docs/specs/f01_03_spec.md` 🔄 En progreso
-  - Plan:   `docs/plans/f01_03_plan.md` 🔄 En progreso
-  - Tareas: `docs/tasks/f01_03_task.md` 🔄 En progreso (4/12 completadas)
+  - PRD:    `docs/reqs/f02_01_prd.md` ⬜ Pendiente de crear
+  - SPEC:   `docs/specs/f02_01_spec.md` ⬜ Pendiente de crear
+  - Plan:   `docs/plans/f02_01_plan.md` ⬜ Pendiente de crear
+  - Tareas: `docs/tasks/f02_01_task.md` ⬜ Pendiente de crear
 
 ---
 
@@ -22,7 +22,7 @@
 ### Fase 1 — Gobernanza y Cimientos
 - ✅ **1.1** Constitución del proyecto: CLAUDE.md, PROJECT_index.md, estructura de carpetas y repositorio
 - ✅ **1.2** Validación de infraestructura: verificar tablas Supabase, triggers, índices, permisos y conectividad
-- ⬜ **1.3** Data Contract: especificación formal del contrato de datos cliente–Triple S, validaciones y protocolo de rechazo
+- ✅ **1.3** Data Contract: especificación formal del contrato de datos cliente–Triple S, validaciones y protocolo de rechazo
 
 ---
 
@@ -73,11 +73,11 @@
 | Plan Etapa 1.2 | `docs/plans/f01_02_plan.md` | ✅ Existe |
 | Tareas Etapa 1.2 | `docs/tasks/f01_02_task.md` | ✅ Existe (35/35 completadas) |
 | Ejecutivo Etapa 1.2 | `docs/executives/f01_02_executive.md` | ✅ Existe |
-| PRD Etapa 1.3 | `docs/reqs/f01_03_prd.md` | 🔄 En progreso |
-| SPEC Etapa 1.3 | `docs/specs/f01_03_spec.md` | 🔄 En progreso |
-| Plan Etapa 1.3 | `docs/plans/f01_03_plan.md` | 🔄 En progreso |
-| Tareas Etapa 1.3 | `docs/tasks/f01_03_task.md` | 🔄 En progreso (4/12 completadas) |
-| Ejecutivo Etapa 1.3 | `docs/executives/f01_03_executive.md` | ⬜ Pendiente |
+| PRD Etapa 1.3 | `docs/reqs/f01_03_prd.md` | ✅ Existe |
+| SPEC Etapa 1.3 | `docs/specs/f01_03_spec.md` | ✅ Existe |
+| Plan Etapa 1.3 | `docs/plans/f01_03_plan.md` | ✅ Existe |
+| Tareas Etapa 1.3 | `docs/tasks/f01_03_task.md` | ✅ Existe (12/12 completadas) |
+| Ejecutivo Etapa 1.3 | `docs/executives/f01_03_executive.md` | ✅ Existe |
 
 ---
 
@@ -93,3 +93,4 @@
 - **2026-03-24** — SUPABASE_PROJECT_ID en `.env` corregido durante Etapa 1.2: apuntaba al proyecto inactivo `pbsqivxcwyomplqgoqva` (Demo_Bunuelos). El proyecto correcto es `ebqrvegxefahumxytgbj` (Demo_Dashboard, ACTIVE_HEALTHY).
 - **2026-03-24** — Agentes especializados creados bajo `.claude/agents/`: `db-agent` (Supabase/PostgreSQL), `python-dev` (TDD Python), `project-manager` (gobernanza documental).
 - **2026-03-24** — Etapa 1.3 en progreso. Los 4 documentos SDD creados: `f01_03_prd.md`, `f01_03_spec.md`, `f01_03_plan.md`, `f01_03_task.md` (12 tareas, 4/12 completadas). Políticas RLS habilitadas en las 3 tablas `tss_*` (`tss_error_log`, `tss_pipeline_log`, `tss_quarantine`). La etapa avanzará a ✅ cuando exista `docs/executives/f01_03_executive.md`.
+- **2026-03-24** — Etapa 1.3 cerrada. Fase 1 completamente cerrada (3/3). Progreso global: 25%. Gate desbloqueado para Etapa 2.1.
