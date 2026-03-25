@@ -4,9 +4,16 @@
 -- Actualizar este archivo inmediatamente después de cada CREATE TABLE,
 -- ALTER TABLE o nuevo trigger en Supabase.
 -- =============================================================================
--- Última sincronización: 2026-03-24 (Etapa 1.2 — Validación de Infraestructura)
+-- Última sincronización: 2026-03-24 (RLS habilitado en tablas tss_* — post Etapa 1.2)
 -- Proyecto Supabase: Demo_Dashboard (ebqrvegxefahumxytgbj) | Región: us-east-1
 -- Tablas incluidas: 4 usr_* (cliente) + 3 tss_* operativas (Triple S)
+-- Cambios en esta sincronización:
+--   - ALTER TABLE tss_error_log    ENABLE ROW LEVEL SECURITY
+--   - ALTER TABLE tss_pipeline_log ENABLE ROW LEVEL SECURITY
+--   - ALTER TABLE tss_quarantine   ENABLE ROW LEVEL SECURITY
+--   - CREATE POLICY authenticated_read_error_log     (SELECT, TO authenticated)
+--   - CREATE POLICY authenticated_read_pipeline_log  (SELECT, TO authenticated)
+--   - CREATE POLICY authenticated_read_quarantine    (SELECT, TO authenticated)
 -- =============================================================================
 
 
@@ -85,6 +92,8 @@ create table public.usr_inventario (
 
 -- tss_error_log: registro persistente de errores detectados durante la ejecución del pipeline.
 -- Cada error tiene un código ERR_MTD_XXX, la tabla origen y el registro que lo causó.
+-- RLS: habilitado. Solo lectura para rol authenticated. anon denegado implícitamente.
+-- service_role bypasea RLS por diseño de Supabase — no requiere política explícita.
 CREATE TABLE IF NOT EXISTS public.tss_error_log (
   id              bigserial                    NOT NULL,
   error_code      text                         NOT NULL,  -- ERR_MTD_001 al ERR_MTD_005
@@ -96,8 +105,19 @@ CREATE TABLE IF NOT EXISTS public.tss_error_log (
   CONSTRAINT tss_error_log_pkey PRIMARY KEY (id)
 );
 
+ALTER TABLE public.tss_error_log ENABLE ROW LEVEL SECURITY;
+
+-- Permite SELECT a usuarios autenticados del dashboard. Sin policy para anon (denegación implícita).
+CREATE POLICY "authenticated_read_error_log"
+  ON public.tss_error_log
+  FOR SELECT
+  TO authenticated
+  USING (true);
+
 -- tss_pipeline_log: canal 3 de la Triple Persistencia de Estado (CLAUDE.md §5).
 -- Cada ejecución del pipeline (validate / etl / alerts) genera 1 registro.
+-- RLS: habilitado. Solo lectura para rol authenticated. anon denegado implícitamente.
+-- service_role bypasea RLS por diseño de Supabase — no requiere política explícita.
 CREATE TABLE IF NOT EXISTS public.tss_pipeline_log (
   id                  bigserial                    NOT NULL,
   run_id              text                         NOT NULL,  -- UUID generado al inicio de la ejecución
@@ -115,8 +135,19 @@ CREATE TABLE IF NOT EXISTS public.tss_pipeline_log (
   CONSTRAINT tss_pipeline_log_status_check   CHECK (status IN ('success', 'failure', 'partial'))
 );
 
+ALTER TABLE public.tss_pipeline_log ENABLE ROW LEVEL SECURITY;
+
+-- Permite SELECT a usuarios autenticados del dashboard. Sin policy para anon (denegación implícita).
+CREATE POLICY "authenticated_read_pipeline_log"
+  ON public.tss_pipeline_log
+  FOR SELECT
+  TO authenticated
+  USING (true);
+
 -- tss_quarantine: destino de registros que no pasan las validaciones del Data Contract.
 -- Los registros permanecen aquí hasta que el cliente corrija y reentregue los datos.
+-- RLS: habilitado. Solo lectura para rol authenticated. anon denegado implícitamente.
+-- service_role bypasea RLS por diseño de Supabase — no requiere política explícita.
 CREATE TABLE IF NOT EXISTS public.tss_quarantine (
   id              bigserial                    NOT NULL,
   source_table    text                         NOT NULL,  -- 'usr_ventas' | 'usr_inventario'
@@ -128,3 +159,12 @@ CREATE TABLE IF NOT EXISTS public.tss_quarantine (
   resolved_at     timestamp with time zone     NULL,      -- NULL hasta que el cliente corrija
   CONSTRAINT tss_quarantine_pkey PRIMARY KEY (id)
 );
+
+ALTER TABLE public.tss_quarantine ENABLE ROW LEVEL SECURITY;
+
+-- Permite SELECT a usuarios autenticados del dashboard. Sin policy para anon (denegación implícita).
+CREATE POLICY "authenticated_read_quarantine"
+  ON public.tss_quarantine
+  FOR SELECT
+  TO authenticated
+  USING (true);

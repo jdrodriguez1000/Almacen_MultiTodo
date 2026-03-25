@@ -70,3 +70,61 @@ infrastructure:
     - "tss_error_log"
     - "tss_pipeline_log"
     - "tss_quarantine"
+
+# ─── DATA CONTRACT ──────────────────────────────────────────────────────────
+# Parámetros del contrato de datos cliente–Triple S.
+# Definidos en docs/specs/f01_03_spec.md §5.
+# No modificar sin Control de Cambios aprobado.
+
+data_contract:
+
+  # Tablas bajo contrato (propiedad del cliente — solo lectura para el pipeline)
+  client_tables:
+    ventas:     "usr_ventas"
+    inventario: "usr_inventario"
+    productos:  "usr_productos"
+    sedes:      "usr_sedes"
+
+  # Tablas operativas de Triple S (lectura/escritura del pipeline)
+  tss_tables:
+    error_log:    "tss_error_log"
+    quarantine:   "tss_quarantine"
+    pipeline_log: "tss_pipeline_log"
+
+  # Códigos de error del Data Contract
+  error_codes:
+    ventana_operativa:       "ERR_MTD_001"
+    sku_no_registrado:       "ERR_MTD_002"
+    sede_no_registrada:      "ERR_MTD_003"
+    dato_dia_actual:         "ERR_MTD_004"
+    valor_numerico_invalido: "ERR_MTD_005"
+
+  # Ventana operativa en horas UTC (inclusivo en ambos extremos)
+  # Equivale a 8:00 AM – 5:59 PM COT (America/Bogota)
+  # 23:00 UTC = 18:00 COT exacto = cierre = FUERA de ventana
+  operating_hours_utc:
+    open:  13   # 8:00 AM COT
+    close: 22   # 5:59 PM COT
+
+  # Zona horaria del almacén — usar pytz, nunca offsets manuales
+  timezone: "America/Bogota"
+
+  # Límite de entrega del cliente (datos disponibles antes de esta hora UTC)
+  delivery_deadline_utc: "05:30"   # 00:30 COT
+
+  # Hora de inicio del pipeline Triple S
+  pipeline_start_utc: "08:30"      # 03:30 COT
+
+  # Umbral de fallo total del lote
+  # Si el % de registros rechazados supera este valor → status='failure'
+  failure_threshold_pct: 50
+
+  # Comportamiento por código de error
+  # 'block_batch'      → bloquea todo el lote de ventas
+  # 'quarantine_record' → solo el registro inválido va a cuarentena
+  error_behavior:
+    ERR_MTD_001: "quarantine_record"
+    ERR_MTD_002: "quarantine_record"
+    ERR_MTD_003: "quarantine_record"
+    ERR_MTD_004: "block_batch"
+    ERR_MTD_005: "quarantine_record"

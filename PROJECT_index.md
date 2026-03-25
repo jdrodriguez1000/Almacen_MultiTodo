@@ -10,10 +10,10 @@
 - **Etapa Activa:** `Etapa 1.3 — Data Contract: especificación formal del contrato de datos cliente–Triple S`
 - **Capa Medallón Activa:** `N/A`
 - **Documentos SDD Gobernantes:** Leer obligatoriamente antes de tomar decisiones arquitectónicas:
-  - PRD:    `docs/reqs/f01_03_prd.md` ⬜ Pendiente de crear
-  - SPEC:   `docs/specs/f01_03_spec.md` ⬜ Pendiente de crear
-  - Plan:   `docs/plans/f01_03_plan.md` ⬜ Pendiente de crear
-  - Tareas: `docs/tasks/f01_03_task.md` ⬜ Pendiente de crear
+  - PRD:    `docs/reqs/f01_03_prd.md` 🔄 En progreso
+  - SPEC:   `docs/specs/f01_03_spec.md` 🔄 En progreso
+  - Plan:   `docs/plans/f01_03_plan.md` 🔄 En progreso
+  - Tareas: `docs/tasks/f01_03_task.md` 🔄 En progreso (4/12 completadas)
 
 ---
 
@@ -46,10 +46,10 @@
 | Lógica Atómica (src) | `pipeline/src/` | 🔄 Parcial — solo supabase_client.py |
 | Tests Pipeline | `pipeline/tests/` | 🔄 Parcial — solo test_supabase_client.py |
 | Dashboard Web | `web/` | ⬜ Placeholder — Fase 3 |
-| Requerimientos (reqs) | `docs/reqs/` | ✅ Existe (f01_01, f01_02) |
-| Especificaciones (specs) | `docs/specs/` | ✅ Existe (f01_01, f01_02) |
-| Planes (plans) | `docs/plans/` | ✅ Existe (f01_01, f01_02) |
-| Tareas (tasks) | `docs/tasks/` | ✅ Existe (f01_01, f01_02) |
+| Requerimientos (reqs) | `docs/reqs/` | ✅ Existe (f01_01, f01_02, f01_03) |
+| Especificaciones (specs) | `docs/specs/` | ✅ Existe (f01_01, f01_02, f01_03) |
+| Planes (plans) | `docs/plans/` | ✅ Existe (f01_01, f01_02, f01_03) |
+| Tareas (tasks) | `docs/tasks/` | ✅ Existe (f01_01, f01_02, f01_03) |
 | Lecciones Aprendidas | `docs/lessons/lessons-learned.md` | ✅ Existe |
 | Resúmenes Ejecutivos | `docs/executives/` | ✅ f01_01 existe — f01_02 generado en esta sesión |
 | Control de Cambios | `docs/changes/` | ✅ CC_00001 Aprobado |
@@ -73,10 +73,10 @@
 | Plan Etapa 1.2 | `docs/plans/f01_02_plan.md` | ✅ Existe |
 | Tareas Etapa 1.2 | `docs/tasks/f01_02_task.md` | ✅ Existe (35/35 completadas) |
 | Ejecutivo Etapa 1.2 | `docs/executives/f01_02_executive.md` | ✅ Existe |
-| PRD Etapa 1.3 | `docs/reqs/f01_03_prd.md` | ⬜ Pendiente |
-| SPEC Etapa 1.3 | `docs/specs/f01_03_spec.md` | ⬜ Pendiente |
-| Plan Etapa 1.3 | `docs/plans/f01_03_plan.md` | ⬜ Pendiente |
-| Tareas Etapa 1.3 | `docs/tasks/f01_03_task.md` | ⬜ Pendiente |
+| PRD Etapa 1.3 | `docs/reqs/f01_03_prd.md` | 🔄 En progreso |
+| SPEC Etapa 1.3 | `docs/specs/f01_03_spec.md` | 🔄 En progreso |
+| Plan Etapa 1.3 | `docs/plans/f01_03_plan.md` | 🔄 En progreso |
+| Tareas Etapa 1.3 | `docs/tasks/f01_03_task.md` | 🔄 En progreso (4/12 completadas) |
 | Ejecutivo Etapa 1.3 | `docs/executives/f01_03_executive.md` | ⬜ Pendiente |
 
 ---
@@ -92,3 +92,4 @@
 - **2026-03-24** — Etapa 1.2 completada. `supabase_client.py` implementado con 7 funciones atómicas. 12/12 tests de integración en verde contra Supabase real (sin mocks). Tablas `tss_error_log`, `tss_pipeline_log`, `tss_quarantine` creadas en Supabase. `schema.sql` sincronizado con 7 tablas (4 `usr_*` + 3 `tss_*`). Rama `feat/etapa-1-2` creada con el código. Avance global: 16.67% (2/12 etapas).
 - **2026-03-24** — SUPABASE_PROJECT_ID en `.env` corregido durante Etapa 1.2: apuntaba al proyecto inactivo `pbsqivxcwyomplqgoqva` (Demo_Bunuelos). El proyecto correcto es `ebqrvegxefahumxytgbj` (Demo_Dashboard, ACTIVE_HEALTHY).
 - **2026-03-24** — Agentes especializados creados bajo `.claude/agents/`: `db-agent` (Supabase/PostgreSQL), `python-dev` (TDD Python), `project-manager` (gobernanza documental).
+- **2026-03-24** — Etapa 1.3 en progreso. Los 4 documentos SDD creados: `f01_03_prd.md`, `f01_03_spec.md`, `f01_03_plan.md`, `f01_03_task.md` (12 tareas, 4/12 completadas). Políticas RLS habilitadas en las 3 tablas `tss_*` (`tss_error_log`, `tss_pipeline_log`, `tss_quarantine`). La etapa avanzará a ✅ cuando exista `docs/executives/f01_03_executive.md`.
