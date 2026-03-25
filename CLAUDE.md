@@ -357,9 +357,10 @@ Desarrollado por **Sabbia Solutions & Services (Triple S)** para el cliente **Al
 ### Fase 2 — Ingeniería de Datos e Integración
 | Etapa | Descripción | Docs SDD |
 |---|---|---|
-| **2.1** | Pipeline de validación: verificar que los datos entrantes cumplen el Data Contract antes de la ingestión | `f02_01_*.md` |
-| **2.2** | ETL Bronze → Silver: ingestión, limpieza, conversión UTC → COT y persistencia en capas de Supabase | `f02_02_*.md` |
-| **2.3** | Capa Gold: cálculos derivados (consumo diario, rotación, clasificación ABC semanal, márgenes) | `f02_03_*.md` |
+| **2.1** | Mockup Interactivo: prototipo visual navegable con datos ficticios para validación temprana de diseño con el cliente | `f02_01_*.md` |
+| **2.2** | Pipeline de validación: verificar que los datos entrantes cumplen el Data Contract antes de la ingestión | `f02_02_*.md` |
+| **2.3** | ETL Bronze → Silver: ingestión, limpieza, conversión UTC → COT y persistencia en capas de Supabase | `f02_03_*.md` |
+| **2.4** | Capa Gold: cálculos derivados (consumo diario, rotación, clasificación ABC semanal, márgenes) | `f02_04_*.md` |
 
 ### Fase 3 — Analítica y Alertas
 | Etapa | Descripción | Docs SDD |
@@ -411,3 +412,9 @@ Desarrollado por **Sabbia Solutions & Services (Triple S)** para el cliente **Al
 
 > **Control de Cambio:** Este documento fue modificado por `CC_00001` (2026-03-24).
 > Cambio aplicado: Paso 6 agregado al Protocolo de Inicio de Sesión (§1) — lectura obligatoria de `docs/database/schema.sql`.
+
+> **Control de Cambio:** Este documento fue modificado por `CC_00002` (2026-03-25).
+> Cambio aplicado: Etapa 2.4 agregada a §10 (Fase 2) — Mockup Interactivo para Validación Temprana de Diseño. Total de etapas: 13.
+
+> **Control de Cambio:** Este documento fue modificado por `CC_00003` (2026-03-25).
+> Cambio aplicado: Mockup Interactivo promovido a Etapa 2.1 (era 2.4). Pipeline desplazado: 2.1→2.2, 2.2→2.3, 2.3→2.4.

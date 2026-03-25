@@ -138,7 +138,29 @@
 ---
 
 ## Fase 2 — Ingeniería de Datos e Integración
-*(Pendiente de inicio.)*
+
+### Etapa 2.1 — Mockup Interactivo
+
+#### Sesión: 2026-03-25
+
+**✅ Lo que funcionó bien:**
+- El flujo PRD → SPEC → Plan → Tasks con el agente `project-manager` + skill `/sdd-doc` produjo una suite documental completa con trazabilidad atómica en una sola sesión.
+- Incorporar la imagen de inspiración (`Inspiracion 1.webp` + `Inspiracion 2.webp`) directamente en la SPEC §12 antes de escribir código garantiza que el agente de implementación tenga una referencia visual concreta, no ambigua.
+- La separación de decisiones por sesión funcionó bien: el usuario leyó el documento de tareas antes de arrancar la implementación — evita correcciones de scope una vez iniciado el código.
+- Crear el skill `prototype-ui-ux` como genérico (no atado al proyecto) + el agente `ui-ux-prototyper` como el contexto específico del proyecto es una buena arquitectura: el skill es reutilizable en cualquier prototipo, el agente conoce el dominio MultiTodo.
+- El **Principio de Migración Cero** quedó documentado en tres capas (PRD `[REQ-11]`, SPEC §1.2, skill `data-architecture.md`) — imposible que el implementador lo olvide.
+
+**⚠️ Lo que no funcionó / fricción encontrada:**
+- El PRD inicial no contemplaba dark mode ni el patrón de sidebar con secciones etiquetadas — ambos se agregaron después de ver las imágenes de inspiración. Esto generó dos rondas de actualización de PRD y SPEC. Ideal: mostrar las imágenes de inspiración antes de generar cualquier documento.
+- Los formatos de mock data en `[DAT-01]`–`[DAT-04]` inicialmente no coincidían con los esquemas de las tablas `usr_*` (campo `sede` string en lugar de `id_sede` integer). Se corrigió en la misma sesión pero requirió una revisión adicional.
+
+**💡 Decisiones clave tomadas:**
+- `darkMode: 'class'` (no `media`) — da control explícito al usuario independientemente de la preferencia del sistema operativo. Persistencia en `localStorage`.
+- Sidebar con **secciones etiquetadas** (`ANÁLISIS` / `ALERTAS`) siguiendo el patrón de la Inspiración 2, con etiquetas `text-xs uppercase tracking-wider` — mismo estilo que los labels de KPI para coherencia visual.
+- Fuente **Inter** via `next/font/google` (built-in Next.js, sin dependencia adicional).
+- Los JSON de mock data que espejean `usr_*` y los que contienen datos derivados (Gold) van en **archivos separados** (`mock_gold.json`) — esta separación refleja la arquitectura real de la BD.
+- Los colores de **Recharts** no se hardcodean — se calculan dinámicamente con `useTheme()` via `chartColors` object para soportar dark mode correctamente.
+- Agente `ui-ux-prototyper` tiene scope **exclusivo a `web/`** — no toca pipeline/, docs/ ni Supabase. Esta restricción está documentada en el agente y es no negociable.
 
 ---
 

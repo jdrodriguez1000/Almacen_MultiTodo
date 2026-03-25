@@ -41,3 +41,8 @@ Thumbs.db
 # Archivos temporales / contexto de sesión (no pertenecen al repo)
 contexto.md
 temp.md
+
+# Imágenes de inspiración de diseño (referencia local — no pertenecen al repo)
+Inspiracion*.webp
+Inspiracion*.png
+Inspiracion*.jpg
